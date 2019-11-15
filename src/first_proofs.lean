@@ -13,7 +13,7 @@ local attribute [instance, priority 0] classical.prop_decidable
 /- 
 Our first goal is to define the set of upper bounds of a set of real numbers.
 This is already defined in mathlib (in a more general context), but we repeat 
-it for the sake of exposition Right-click "upper_bounds" below to get offered
+it for the sake of exposition. Right-click "upper_bounds" below to get offered
 to jump to mathlib's version
 -/
 #check upper_bounds
