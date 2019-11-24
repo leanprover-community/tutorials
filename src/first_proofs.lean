@@ -58,7 +58,7 @@ begin
   specialize x_up y,
   -- Assumption `x_up` now needs the information that `y` is indeed in `A`.
   specialize x_up y_in,
-  -- Let's do this quicker with roles swaped
+  -- Let's do this quicker with roles swapped
   specialize y_up x x_in,
   -- We explained to Lean the idea of this proof. 
   -- Now we know `x ≤ y` and `y ≤ x`, and Lean shouldn't need more help.
