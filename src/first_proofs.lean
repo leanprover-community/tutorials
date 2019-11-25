@@ -145,7 +145,7 @@ begin
   intro y,
   -- Let's prove the contrapositive
   contrapose,
-  -- The symbol `¬` means neagtion. Let's ask Lean to rewrite the goal without negation,
+  -- The symbol `¬` means negation. Let's ask Lean to rewrite the goal without negation,
   -- pushing negation through quantifiers and inequalities
   push_neg,
   -- Let's assume the premise, calling the assumption `h`
