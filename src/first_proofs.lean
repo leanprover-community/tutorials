@@ -39,7 +39,7 @@ definition, in other circumstances it could be something proven inside Lean.
 -/
 
 /- For illustrative purposes, we now define an infix version of the above predicate.
-It will allow us to wite `a is_a_max_of A`, which is closer to a sentence.
+It will allow us to write `a is_a_max_of A`, which is closer to a sentence.
 -/
 infix `is_a_max_of`:55 := is_max
 
@@ -58,7 +58,7 @@ begin
   specialize x_up y,
   -- Assumption `x_up` now needs the information that `y` is indeed in `A`.
   specialize x_up y_in,
-  -- Let's do this quicker with roles swaped
+  -- Let's do this quicker with roles swapped
   specialize y_up x x_in,
   -- We explained to Lean the idea of this proof. 
   -- Now we know `x ≤ y` and `y ≤ x`, and Lean shouldn't need more help.
@@ -145,7 +145,7 @@ begin
   intro y,
   -- Let's prove the contrapositive
   contrapose,
-  -- The symbol `¬` means neagtion. Let's ask Lean to rewrite the goal without negation,
+  -- The symbol `¬` means negation. Let's ask Lean to rewrite the goal without negation,
   -- pushing negation through quantifiers and inequalities
   push_neg,
   -- Let's assume the premise, calling the assumption `h`
