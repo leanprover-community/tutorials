@@ -7,7 +7,8 @@ things using Lean and mathlib. Complicated definitions and theory building are n
 import data.real.basic
 
 -- We want to be able to define functions using the law of excluded middle
-local attribute [instance, priority 0] classical.prop_decidable
+noncomputable theory
+open_locale classical
 
 
 /- 
