@@ -2,7 +2,7 @@ import data.real.basic
 
 /-
 In the previous file, we saw how to rewrite using equalities. 
-The analogue operation with mathematical statements is rewriting using
+The analogous operation with mathematical statements is rewriting using
 equivalences. This is also done using the rw tactic.
 Lean uses ↔ to denote equivalence instead of ⇔.
 
@@ -10,15 +10,15 @@ In the following exercises we will use the lemma:
 
   sub_nonneg {x y : ℝ} : 0 ≤ y - x ↔ x ≤ y
 
-The curly braces around x and y instead of parentheses mean Lean will always try to figure out what are
-x and y from context, unless we really insist on telling it (we'll see how to insist much later). 
+The curly braces around x and y instead of parentheses mean Lean will always try to figure out what
+x and y are from the context, unless we really insist on telling it (we'll see how to insist much later). 
 Let's not worry about that for now.
 
 In order to announce an intermediate statement we use:
 
   have my_name : my statement,
 
-This triggers the apparition of a new goal: proving the statement. After this is done,
+This triggers the appearance of a new goal: proving the statement. After this is done,
 the statement becomes available under the name my_name.
 We can focus on the current goal by typing tactics between curly braces.
 -/
@@ -54,8 +54,8 @@ Let's see how we could use this a lemma. It is already in the core library, unde
 This can be read as: "add_le_add_right is a function that will take as input real numbers a and b, an
 assumption hab claiming a ≤ b and a real number c, and will output a proof of a + c ≤ b + c". 
 
-In addition, recall that curly braces around a b mean Lean will figure out those arguments unless we
-insist to help. This is because they can be deduced from the next argument hab.
+In addition, recall that curly braces around a b means Lean will figure out those arguments unless we
+insist on helping. This is because they can be deduced from the next argument hab.
 So it will be sufficient to feed hab and c to this function.
 -/
 
@@ -68,7 +68,7 @@ end
 /-
 In the second line of the above proof, we need to prove 0 + b ≤ a + b. 
 The proof after the colon says: this is exactly lemma add_le_add_right applied to ha and b.
-Actually the calc block expect proof terms, and the `by` keyword is used to tell Lean we will use tactics
+Actually the calc block expects proof terms, and the `by` keyword is used to tell Lean we will use tactics
 to build such a proof term. But since the only tactic used in this block is `exact`, we can skip
 tactics entirely, and write:
 -/
@@ -121,13 +121,13 @@ end
 
 /-
 In the above examples, we prepared proofs of assumptions of our lemmas beforehand, so
-that we could feed them to the lemmas. This is called forward reasonning. 
+that we could feed them to the lemmas. This is called forward reasoning. 
 The calc proofs also belong to this category.
 
 We can also announce the use of a lemma, and provide proofs after the fact, using 
-the `apply` tactic. This is called backward reasonning because we get the conclusion 
+the `apply` tactic. This is called backward reasoning because we get the conclusion 
 first, and provide proofs later. Using rw on the goal (rather than on an assumption 
-from the local context) is also backward reasonning.
+from the local context) is also backward reasoning.
 
 Let's do that using the lemma
   
@@ -148,8 +148,8 @@ begin
 end
 
 /-
-Let's prove the same statement using only forward reasonning: announcing stuff,
-proving them by working with know facts, moving forward.
+Let's prove the same statement using only forward reasoning: announcing new facts,
+proving them by working with known facts, moving forward.
 -/
 
 example (a b c  : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a*c ≤ b*c :=
@@ -169,13 +169,13 @@ begin
 end
 
 /-
-One reason why the backward reasonning proof is shorter is because Lean can
+One reason why the backward reasoning proof is shorter is because Lean can
 infer of lot of things by comparing the goal and the lemma statement. Indeed
 in the `apply mul_nonneg'` line, we didn't need to tell Lean that x = b - a 
 and y = c in the lemma. It was infered by "unification" between the lemma
 statement and the goal.
 
-To be fair to the forward reasonning version, we should introduce a convenient
+To be fair to the forward reasoning version, we should introduce a convenient
 variation on `rw`. The `rwa` tactic performs rewrite and then looks for an
 assumption matching the goal. We can use it to rewrite our latest proof as:
 -/
@@ -194,7 +194,7 @@ begin
 end
 
 /-
-Let's now combine forward and backward reasonning, to get our most 
+Let's now combine forward and backward reasoning, to get our most 
 efficient proof of this statement. Note in particular how unification is used
 to know what to prove inside the parentheses in the mul_nonneg' arguments.
 -/
@@ -213,14 +213,14 @@ Let's now practice all three styles using:
   sub_nonpos {a b : α} : a - b ≤ 0 ↔ a ≤ b
 -/
 
-/- First using mostly backward reasonning -/
+/- First using mostly backward reasoning -/
 -- 0013
 example (a b c : ℝ) (hc : c ≤ 0) (hab :  a ≤ b) : b*c ≤ a*c :=
 begin
   sorry
 end
 
-/- Using forward reasonning -/
+/- Using forward reasoning -/
 -- 0014
 example (a b c : ℝ) (hc : c ≤ 0) (hab :  a ≤ b) : b*c ≤ a*c :=
 begin
@@ -240,7 +240,7 @@ a simple arrow →, the same it uses for functions (say denoting the type of fun
 from ℕ to ℕ by ℕ → ℕ). This is because it sees a proof of P ⇒ Q as a function turning 
 a proof of P into a proof Q.
 
-Many examples that we met are secretely implications. For instance we proved
+Many examples that we met are secretly implications. For instance we proved
 
   le_add_of_nonneg_left (a b : ℝ) (ha : 0 ≤ a) : b ≤ a + b
 
@@ -280,7 +280,7 @@ end
 
 
 /-
-What about lemmas having more than one assumptions? For instance
+What about lemmas having more than one assumption? For instance
   
   add_nonneg {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b
 
@@ -308,7 +308,7 @@ add_nonneg
 The above pattern is so common that implication are defined as right-associative operators,
 hence parentheses are not needed above.
 
-Let's prove the naive conjunction version implies the funny Lean version. For this we need
+Let's prove that the naive conjunction version implies the funny Lean version. For this we need
 to know how to prove a conjunction. The split tactic tactic creates two goals from a conjunction goal.
 It can also be used to create two implication goals from an equivalence goal.
 -/
@@ -335,7 +335,7 @@ end
 
 /-
 Of course using split only to be able to use exact twice in a row feels silly. One can
-also use the anonymous constructor syntax: ⟨ ⟩ 
+also use the anonymous constructor syntax: ⟨ ⟩ (obtained by typing \< and \> in VS Code) 
 Beware those are not parentheses but angle brackets. This is a generic way of providing 
 compound objects to Lean when Lean already has a very clear idea of what it is waiting for.
 
@@ -424,7 +424,7 @@ end
 Final exercise
 
 In the last exercise of this file, we will use the divisibility relation on ℕ,
-denoted by ∣ (beware this is a unicode divisibility bar, not the ASCII pipe character),
+denoted by ∣ (beware this is a unicode divisibility bar, obtained with \|, not the ASCII pipe character),
 and the gcd function.
 
 The definitions are the usual one, but our goal is to avoid using these definitions and
@@ -437,7 +437,7 @@ only use the following three lemmas:
   dvd_gcd_iff {a b c : ℕ} : c ∣ gcd a b ↔ c ∣ a ∧ c ∣ b
 -/
 
--- All functions and lemma below are about natural numbers.
+-- The lemma below is about natural numbers.
 open nat
 
 -- 0022
