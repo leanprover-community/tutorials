@@ -423,3 +423,4 @@ begin
     intro n,
     exact y_mino (u n) (huA n) },
 end
+
