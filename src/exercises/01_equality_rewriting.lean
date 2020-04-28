@@ -96,7 +96,7 @@ example (a b c d : ℝ) (hyp : c = d*a + b) (hyp' : b = a*d) : c = 2*a*d :=
 begin
   calc c = d*a + b : by { rw hyp }
   ... = d*a + a*d  : by { rw hyp' }
-  ... = a*d + a*d  : by {  }
+  ... = a*d + a*d  : by { rw mul_comm d a }
   ... = 2*(a*d)    : by { rw two_mul }
   ... = 2*a*d      : by { rw mul_assoc },
 end
