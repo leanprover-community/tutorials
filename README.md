@@ -10,8 +10,5 @@ the recommended way it to [install Lean](https://github.com/leanprover-community
 If you have already installed Lean and mathlib in the recommended manner, and have access to a command line, then installing this project should be as simple as
 
 ```
-git clone https://github.com/leanprover-community/tutorials.git
-cd tutorials
-leanpkg configure
-update-mathlib
+leanproject get tutorials
 ```
