@@ -32,7 +32,7 @@ def odd_fun (f : ℝ → ℝ) := ∀ x, f (-x) = -f x
 /-
 In the next proof, we also take the opportunity to introduce the 
 unfold tactic, which simply unfolds definitions. Here this is purely
-for didactic reason, Lean doesn't need those unfolds. 
+for didactic reason, Lean doesn't need those unfold. 
 We will also use rfl which is a term proving equalities that are true 
 by definition (in a very strong sense to be discussed later).
 -/
@@ -116,7 +116,7 @@ def non_decreasing (f : ℝ → ℝ) := ∀ x₁ x₂, x₁ ≤ x₂ → f x₁ 
 
 def non_increasing (f : ℝ → ℝ) := ∀ x₁ x₂, x₁ ≤ x₂ → f x₁ ≥ f x₂
 
-/- Let's be very explicit and forward reasoning at first. -/
+/- Let's be very explicit and forward reasonning at first. -/
 example (f g : ℝ → ℝ) (hf : non_decreasing f) (hg : non_decreasing g) : non_decreasing (g ∘ f) :=
 begin
   -- Let x₁ and x₂ be real numbers such that x₁ ≤ x₂

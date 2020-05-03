@@ -33,7 +33,7 @@ end
 
 /-
 The next exercises use divisibility in ℤ (beware the ∣ symbol which is
-not ASCII; it is typeset with \| in VS Code).
+not ASCII).
 
 By definition, a ∣ b ↔ ∃ k, b = a*k, so you can prove a ∣ b using the
 use tactic.
@@ -88,14 +88,14 @@ begin
 end
 
 /-
-We can now start combining quantifiers, using the definition
+We can nom start combining quantifiers, using the definition
 
   surjective (f : X → Y) := ∀ y, ∃ x, f x = y
 
 -/
 open function
 
--- In the remainder of this file, f and g will denote functions from
+-- In the remaining of this file, f and g will denote functions from
 -- ℝ to ℝ.
 variables (f g : ℝ → ℝ)
 

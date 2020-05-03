@@ -8,6 +8,8 @@ root = Path(__file__).parent/'src'
 
 if __name__ == '__main__':
     for path in (root/'solutions').glob('**/*.lean'):
+        if path.name == 'tuto_lib.lean':
+            continue
         print(path)
         out = root/'exercises'/path.relative_to(root/'solutions')
         with out.open('w') as outp:
