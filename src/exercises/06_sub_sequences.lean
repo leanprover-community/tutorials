@@ -65,11 +65,12 @@ def cluster_point (u : ℕ → ℝ) (a : ℝ) :=
 variables {u : ℕ → ℝ} {a l : ℝ}
 
 /-
-In the exercise, we use `∃ n ≥ N, ...` which is the abreviation of
+In the exercise, we use `∃ n ≥ N, ...` which is the abbreviation of
 `∃ n, n ≥ N ∧ ...`.
-Lean can read this abreviation, but displays as the confusing :
+Lean can read this abbreviation, but displays as the confusing :
 `∃ (n : ℕ) (H : n ≥ N)`
-One gets used to it.
+One gets used to it. Alternatively, one can get rid of it using the lemma
+  exists_prop {p q : Prop} : (∃ (h : p), q) ↔ p ∧ q
 -/
 
 /-- If `a` is a cluster point of `u` then there are values of

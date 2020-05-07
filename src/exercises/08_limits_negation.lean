@@ -38,10 +38,10 @@ end
 
 /-
 In the next exercise, we need to keep in mind that
-`∀ x x', ...` is the abreviation of
+`∀ x x', ...` is the abbreviation of
 `∀ x, ∀ x', ... `. 
 
-Also, `∃ x x', ...` is the abreviation of `∃ x, ∃ x', ...`.
+Also, `∃ x x', ...` is the abbreviation of `∃ x, ∃ x', ...`.
 -/
 
 /- Negation of "f is uniformly continuous on ℝ" -/
@@ -100,8 +100,15 @@ end
 In the following exercises, `A : set ℝ` means that A is a set of real numbers.
 We can use the usual notation x ∈ A.
 
-The notation `∀ x ∈ A, ...` is the abreviation of `∀ x, x ∈ A → ... `
+The notation `∀ x ∈ A, ...` is the abbreviation of `∀ x, x ∈ A → ... `
 
+The notation `∃ x ∈ A, ...` is the abbreviation of `∃ x, x ∈ A ∧ ... `.
+More precisely it is the abbreviation of `∃ x (H : x ∈ A), ...`
+which is Lean's strange way of saying `∃ x, x ∈ A ∧ ... `. 
+You can convert between both form using the lemma 
+  exists_prop {p q : Prop} : (∃ (h : p), q) ↔ p ∧ q
+
+We'll work with upper bounds and supremums.
 Again we'll introduce specialized definitions for the sake of exercises, but mathlib
 has more general versions.
 

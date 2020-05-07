@@ -19,7 +19,7 @@ The definition we'll be using is:
 def seq_limit (u : ℕ → ℝ) (l : ℝ) : Prop :=
 ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| ≤ ε
 
-Note the use of `∀ ε > 0, ...` which is an abreviation of
+Note the use of `∀ ε > 0, ...` which is an abbreviation of
 `∀ ε, ε > 0 → ... `
 
 In particular, an statement like `h : ∀ ε > 0, ...`

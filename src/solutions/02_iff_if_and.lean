@@ -109,7 +109,7 @@ But we can already try to understand how their names are built:
 "le_add" describe the conclusion "less or equal than some addition"
 It comes first because we are focussed on proving stuff, and 
 auto-completion works by looking at the beginning of words. 
-"of" introduces assumptions. "nonneg" is Lean's abreviation for non-negative.
+"of" introduces assumptions. "nonneg" is Lean's abbreviation for non-negative.
 "left" or "right" disambiguates between the two variations.
 
 Let's use those lemmas by hand for now.
