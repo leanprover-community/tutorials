@@ -3,7 +3,7 @@
 The goal of this project is to quickly teach you how to use Lean for
 mathematics using a very hands-on approach. It can be used alongside
 [Theorem proving in Lean](https://leanprover.github.io/theorem_proving_in_lean/)
-or independantly.
+or independently.
 You can first play the 
 [Natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/)
 first, but this is not mandatory.
