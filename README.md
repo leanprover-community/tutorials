@@ -8,6 +8,12 @@ You can first play the
 [Natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/)
 first, but this is not mandatory.
 
+Currently, those tutorials do no cover creating your own theories, only
+proving things in elementary real analysis. All exercices are adapted
+from a first year undergraduate course by Patrick Massot in Orsay,
+adding only explanations about compressing proofs using slightly advanced
+tactics like `rintros` and `rcases`.
+
 What you do need first is to [install Lean](https://github.com/leanprover-community/mathlib/blob/master/README.md) and [get this project](https://github.com/leanprover-community/mathlib/blob/master/docs/install/project.md) for local use by typing:
 ```
 leanproject get tutorials
