@@ -46,7 +46,7 @@ It will allow us to write `a is_a_max_of A`, which is closer to a sentence.
 infix `is_a_max_of`:55 := is_max
 
 /-
-Let's prove something now! A set of real number has at most one maximum. Here 
+Let's prove something now! A set of real numbers has at most one maximum. Here 
 everything left of the final `:` is introducing the objects and assumption. The equality
 `x = y` right of the colon is the conclusion.
 -/
@@ -65,13 +65,13 @@ begin
   -- We explained to Lean the idea of this proof. 
   -- Now we know `x ≤ y` and `y ≤ x`, and Lean shouldn't need more help.
   -- `linarith` proves equalities and inequalities that follow linearly from
-  -- assumption we have.
+  -- the assumption we have.
   linarith,
 end
 
 /-
 The above proof is too long, even if you remove comments. We don't really need the
-unpacking steps at the beginning, we can access both parts of the assumption
+unpacking steps at the beginning; we can access both parts of the assumption
 `hx : x is_a_max_of A` using shortcuts `h.1` and `h.2`. We can also improve
 readability without assistance from the tactic state display, clearly announcing
 intermediate goals using `have`. This way we get to the following version of the
@@ -94,16 +94,16 @@ is then the statement `x ∈ A → x ≤ y`, which itself is a function turning 
 statement `x ∈ A` into `x ≤ y` so that the full expression `hy.2 x hx.1` is
 indeed a proof of `x ≤ y`.
 
-One could argue a three line long proof of this lemma is still two lines too long.
+One could argue a three-line-long proof of this lemma is still two lines too long.
 This is debatable, but mathlib's style is to write very short proofs for trivial
 lemmas. Those proofs are not easy to read but they are meant to indicate that the 
 proof is probably not worth reading.
 
-In order to reach this stage, we need to know what linarith did for us. It invoked
+In order to reach this stage, we need to know what `linarith` did for us. It invoked
 the lemma `le_antisymm` which says: `x ≤ y → y ≤ x → x = y`. This arrow, which
 is used both for function and implication, is right associative. So the statement is
 `x ≤ y → (y ≤ x → x = y)` which reads: I will send a proof `p` of `x ≤ y` to a function
-sending a proof `p'` of `y ≤ x` to a proof of `x = y`. Hence `le_antisymm p p'` is a
+sending a proof `q'` of `y ≤ x` to a proof of `x = y`. Hence `le_antisymm p q'` is a
 proof of `x = y`.
 
 Using this we can get our one-line proof:
@@ -158,7 +158,7 @@ begin
 end
 
 /-
-In the above proof, the sequence `contrapose, push_neg` is so common it can be 
+In the above proof, the sequence `contrapose, push_neg` is so common that it can be 
 abbreviated to `contrapose!`. With these commands, we enter the gray zone between
 proof checking and proof finding. Practical computer proof checking crucially needs
 the computer to handle tedious proof steps. In the next proof, we'll start using
@@ -200,7 +200,7 @@ end
 
 /-
 The angle brackets `⟨` and `⟩` introduce compound data or proofs. A proof
-of a `∃ z, P z` statemement is composed of a witness `z₀` and a proof `z` of
+of a `∃ z, P z` statemement is composed of a witness `z₀` and a proof `h` of
 `P z₀`. The compound is denoted by `⟨z₀, h⟩`. In the example above, the predicate is
 itself compound, it is a conjunction `P z ∧ Q z`. So the proof term should read
 `⟨z₀, ⟨h₁, h₂⟩⟩` where `h₁` (resp. `h₂`) is a proof of `P z₀` (resp. `Q z₀`). 
@@ -213,7 +213,7 @@ In this example, `begin` enters tactic mode, `exact` leaves it, `by` re-enters i
 
 Going all the way to a proof term would make the proof much longer, because we 
 crucially use automation with `contrapose!` and `linarith`. We can still get a one-line
-proof using curly braces to gather several tactic invocation, and the `by` abbreviation
+proof using curly braces to gather several tactic invocations, and the `by` abbreviation
 instead of `begin`/`end`:
 -/
 
@@ -251,7 +251,7 @@ begin
 end
 
 /-
-Now we are ready for some analysis. Let's setup notation for absolute value
+Now we are ready for some analysis. Let's set up notation for absolute value
 -/
 
 local notation `|`x`|` := abs x

@@ -62,7 +62,7 @@ example (a b c : ℝ) : a * (b * c) = b * (a * c) :=
 begin
   -- sorry
   rw ← mul_assoc,
-  -- "rw mul_comm," ne fait pas ce qu'on veut.
+  -- "rw mul_comm," doesn't do what we want.
   rw mul_comm a b,
   rw mul_assoc,
   -- sorry
