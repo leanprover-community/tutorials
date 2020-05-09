@@ -58,12 +58,12 @@ end
 /-
 We can also perform rewriting in an assumption of the local context, using for instance
   rw mul_comm a b at hyp,
-in order to replace a*b by b*a  in assumption hyp.
+in order to replace a*b by b*a in assumption hyp.
 
 The next example will use a third lemma:
   two_mul a : 2*a = a + a
 
-Also we use the exact tactic, which allows to provide a direct proof term.
+Also we use the `exact` tactic, which allows to provide a direct proof term.
 -/
 
 example (a b c d : ℝ) (hyp : c = d*a + b) (hyp' : b = a*d) : c = 2*a*d :=
@@ -102,7 +102,7 @@ begin
 end
 
 /-
-Let's note there is no comma at the end of each line of calculation. calc is really one
+Let's note there is no comma at the end of each line of calculation. `calc` is really one
 command, and the comma comes only after it's fully done.
 
 From a practical point of view, when writing such a proof, it is convenient to:
@@ -123,7 +123,7 @@ end
 
 /-
 The preceding proofs have exhauted our supply of "mul_comm" patience. Now it's time
-to get the computer to work harder. The ring tactic will prove any goal that follow by
+to get the computer to work harder. The `ring` tactic will prove any goal that follows by
 applying only the axioms of commutative (semi-)rings, in particuler commutativity and 
 associativity of addition and multiplication, as well as distributivity.
 
@@ -139,7 +139,7 @@ begin
 end
 
 /-
-Of course we can use ring outside of calc. Let's do the next one in one line.
+Of course we can use `ring` outside of `calc`. Let's do the next one in one line.
 -/
 
 -- 0006
