@@ -31,9 +31,9 @@ def odd_fun (f : ℝ → ℝ) := ∀ x, f (-x) = -f x
 
 /-
 In the next proof, we also take the opportunity to introduce the 
-unfold tactic, which simply unfolds definitions. Here this is purely
-for didactic reason, Lean doesn't need those unfold. 
-We will also use rfl which is a term proving equalities that are true 
+`unfold` tactic, which simply unfolds definitions. Here this is purely
+for didactic reason, Lean doesn't need those `unfold` invocations. 
+We will also use `rfl` which is a term proving equalities that are true 
 by definition (in a very strong sense to be discussed later).
 -/
 
@@ -41,7 +41,7 @@ example (f g : ℝ → ℝ) : even_fun f → even_fun g →  even_fun (f + g) :=
 begin
   -- Assume f is even
   intros hf,
-  -- which mean ∀ x, f (-x) = f x
+  -- which means ∀ x, f (-x) = f x
   unfold even_fun at hf,
   -- and the same for g
   intros hg,
@@ -58,20 +58,20 @@ begin
 end
 
 /-
-In the preceding proof, all unfold lines are purely for
+In the preceding proof, all `unfold` lines are purely for
 psychological comfort.
 
 Sometimes unfolding is necessary because we want to apply a tactic
 that operates purely on the syntactical level.
-The main such tactic is rw.
+The main such tactic is `rw`.
 
-The same property of rw explain which the first computation line
-is necessary, although its proof is simply rfl.
+The same property of `rw` explain why the first computation line
+is necessary, although its proof is simply `rfl`.
 Before that line, `rw hf x` won't find anything like `f (-x)` hence
 will give up.
-The last line however is not necessary, since it only proves 
+The last line is not necessary however, since it only proves 
 something that is true by definition, and is not followed by
-a rw.
+a `rw`.
 
 Also, Lean doesn't need to be told that hf should be specialized to 
 x before rewriting, exactly as in the first file 01_equality_rewriting.
@@ -89,7 +89,7 @@ end
 
 /-
 Note that the tactic state displays changes when we
-move the cursor inside the list of expression given to rw.
+move the cursor inside the list of expressions given to `rw`.
 
 Now let's practice.
 -/
@@ -115,7 +115,7 @@ begin
 end
 
 /-
-Let's have more quantifiers, and play with forward and backward reasonning. 
+Let's have more quantifiers, and play with forward and backward reasoning. 
 
 In the next definitions, note how `∀ x₁, ∀ x₂` is abreviated to `∀ x₁ x₂`. 
 -/
@@ -124,7 +124,7 @@ def non_decreasing (f : ℝ → ℝ) := ∀ x₁ x₂, x₁ ≤ x₂ → f x₁ 
 
 def non_increasing (f : ℝ → ℝ) := ∀ x₁ x₂, x₁ ≤ x₂ → f x₁ ≥ f x₂
 
-/- Let's be very explicit and forward reasonning at first. -/
+/- Let's be very explicit and use forward reasonning first. -/
 example (f g : ℝ → ℝ) (hf : non_decreasing f) (hg : non_decreasing g) : non_decreasing (g ∘ f) :=
 begin
   -- Let x₁ and x₂ be real numbers such that x₁ ≤ x₂
@@ -137,15 +137,15 @@ begin
 end
 
 /-
-In the above proof, note how inconvenient it is to specify x₁ and x₂ in `hf x₁ x₂ h` which 
+In the above proof, note how inconvenient it is to specify x₁ and x₂ in `hf x₁ x₂ h` since
 they could be inferred from the type of h. 
 We could have written `hf _ _ h` and Lean would have filled the holes denoted by _. 
 
 Even better we could have written the definition
-of non_decreasing as: ∀ {x₁ x₂}, x₁ ≤ x₂ → f x₁ ≤ f x₂, with curly braces to denote
+of `non_decreasing` as: ∀ {x₁ x₂}, x₁ ≤ x₂ → f x₁ ≤ f x₂, with curly braces to denote
 implicit arguments.
  
-But let's leave that for now. One possible variation on the above proof is to
+But let's leave that aside for now. One possible variation on the above proof is to
 use the `specialize` tactic to replace hf by its specialization to the relevant value.
  -/
 
@@ -157,7 +157,7 @@ begin
 end
 
 /-
-This specialize tactic is mostly useful for exploration, or in preparation for rewriting 
+This `specialize` tactic is mostly useful for exploration, or in preparation for rewriting 
 in the assumption. One can very often replace its use by using more complicated expressions
 directly involving the original assumption, as in the next variation:
 -/
@@ -168,7 +168,7 @@ begin
 end
 
 /-
-Since the above proof uses only intros and exact, we could very easily replace it by the
+Since the above proof uses only `intros` and `exact`, we could very easily replace it by the
 raw proof term:
 -/
 example (f g : ℝ → ℝ) (hf : non_decreasing f) (hg : non_decreasing g) : non_decreasing (g ∘ f) :=
@@ -178,7 +178,7 @@ example (f g : ℝ → ℝ) (hf : non_decreasing f) (hg : non_decreasing g) : no
 Of course the above proof is difficult to decipher. The principle in mathlib is to use
 such a proof when the result is obvious and you don't want to read the proof anyway. 
 
-Instead of pursuing this style, let's see how backward reasonning would look like here.
+Instead of pursuing this style, let's see how backward reasoning would look like here.
 As usual with this style, we use `apply` and enjoy Lean specializing assumptions for us
 using unification.
 -/
@@ -214,7 +214,7 @@ In order to make use of an assumption
   hyp : P ∨ Q
 we use the cases tactic:
   cases hyp with hP hQ
-which creates two proof branches: on branch assuming hP : P,
+which creates two proof branches: one branch assuming hP : P,
 and one branch assuming hQ : Q.
 
 In order to directly prove a goal P ∨ Q,

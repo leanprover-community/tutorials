@@ -15,7 +15,7 @@ begin
 end
 
 /-
-In order to use `h : ∃ x, P x`, we use the cases tactic to fix 
+In order to use `h : ∃ x, P x`, we use the `cases` tactic to fix 
 one x₀ that works.
 
 Again h can come straight from the local context or can be a more 
@@ -36,7 +36,7 @@ The next exercises use divisibility in ℤ (beware the ∣ symbol which is
 not ASCII).
 
 By definition, a ∣ b ↔ ∃ k, b = a*k, so you can prove a ∣ b using the
-use tactic.
+`use` tactic.
 -/
 
 -- Until the end of this file, a, b and c will denote integers, unless
@@ -62,9 +62,9 @@ A very common pattern is to have an assumption or lemma asserting
 and this is used through the combo:
   cases h with x hx,
   rw hx at ...
-The tactic rcases both allows to do recursive cases, as indicated by its name,
-but also simplifies the above combo when the name hx is replaced by the special
-name rfl, as in the following example. 
+The tactic `rcases` allows us to do recursive `cases`, as indicated by its name,
+and also simplifies the above combo when the name hx is replaced by the special
+name `rfl`, as in the following example. 
 It uses the anonymous constructor angle brackets syntax.
 -/
 
@@ -78,7 +78,7 @@ begin
 end
 
 /-
-You can use the same rfl trick with the `rintros` tactic.
+You can use the same `rfl` trick with the `rintros` tactic.
 -/
 
 example : a ∣ b → a ∣ c → a ∣ b+c :=
@@ -102,7 +102,7 @@ begin
 end
 
 /-
-We can nom start combining quantifiers, using the definition
+We can now start combining quantifiers, using the definition
 
   surjective (f : X → Y) := ∀ y, ∃ x, f x = y
 
@@ -125,7 +125,7 @@ begin
 end
 
 /- 
-This above exercise can be done in three lines. Try again with the
+The above exercise can be done in three lines. Try to do the
 next exercise in four lines.
 -/
 
