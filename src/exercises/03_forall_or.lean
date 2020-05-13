@@ -202,7 +202,7 @@ In order to make use of an assumption
   hyp : P ∨ Q
 we use the cases tactic:
   cases hyp with hP hQ
-which creates two proof branches: on branch assuming hP : P,
+which creates two proof branches: one branch assuming hP : P,
 and one branch assuming hQ : Q.
 
 In order to directly prove a goal P ∨ Q,
