@@ -354,7 +354,7 @@ The above pattern is so common that implications are defined as right-associativ
 hence parentheses are not needed above.
 
 Let's prove that the naive conjunction version implies the funny Lean version. For this we need
-to know how to prove a conjunction. The `split` tactic tactic creates two goals from a conjunction goal.
+to know how to prove a conjunction. The `split` tactic creates two goals from a conjunction goal.
 It can also be used to create two implication goals from an equivalence goal.
 -/
 example {a b : ℝ} (H : (0 ≤ a ∧ 0 ≤ b) → 0 ≤ a + b) : 0 ≤ a → (0 ≤ b → 0 ≤ a + b) :=
