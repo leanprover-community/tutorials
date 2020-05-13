@@ -11,7 +11,7 @@ mathlib has a much more general definition of limits, but here
 we want to practice using the logical operators and relations
 covered in the previous files.
 
-A sequence u is a function from ℕ to ℝ hence Lean says
+A sequence u is a function from ℕ to ℝ, hence Lean says
 u : ℕ → ℝ
 The definition we'll be using is:
 
@@ -22,13 +22,13 @@ def seq_limit (u : ℕ → ℝ) (l : ℝ) : Prop :=
 Note the use of `∀ ε > 0, ...` which is an abbreviation of
 `∀ ε, ε > 0 → ... `
 
-In particular, an statement like `h : ∀ ε > 0, ...`
+In particular, a statement like `h : ∀ ε > 0, ...`
 can be specialized to a given ε₀ by
-  specialize h ε₀ hε₀
+  `specialize h ε₀ hε₀`
 where hε₀ is a proof of ε₀ > 0.
 
 Also recall that, wherever Lean expects some proof term, we can
-start a tactic mode proof using the keyword `by` (follwed by curly braces
+start a tactic mode proof using the keyword `by` (followed by curly braces
 if you need more than one tactic invocation).
 For instance, if the local context contains:
 
@@ -37,10 +37,10 @@ For instance, if the local context contains:
 h : ∀ ε > 0, ...
 
 then we can specialize h to the real number δ/2 using:
-  specialize h (δ/2) (by linarith)
-where `by linarith` will provide the proof of δ/2 > 0 expected by Lean.
+  `specialize h (δ/2) (by linarith)`
+where `by linarith` will provide the proof of `δ/2 > 0` expected by Lean.
 
-We'll take the opportunity to use two new tactics:
+We'll take this opportunity to use two new tactics:
 
 `norm_num` will perform numerical normalization on the goal and `norm_num at h` 
 will do the same in assumption `h`. This will get rid of trivial calculations on numbers,
@@ -50,7 +50,7 @@ like replacing |l - l| by zero in the next exercise.
 proving the arguments are the same. 
 For instance, if the goal is `f x + g y = f z + g t` then congr will replace it by
 two goals: `x = z` and `y = t`.
-You can limit the recursion depth by specifying a natural number after congr'. 
+You can limit the recursion depth by specifying a natural number after `congr'`. 
 For instance, in the above example, `congr' 1` will give new goals
 `f x = f z` and `g y = g t`, which only inspect arguments of the addition and not deeper.
 -/
@@ -108,7 +108,7 @@ le_max_left p q : p ≤ max p q
 le_max_right p q : q ≤ max p q
 
 You should probably add them to the sheet of paper where you wrote 
-the abs lemmas since they are used in many exercises.
+the `abs` lemmas since they are used in many exercises.
 
 Let's see an example.
 -/
@@ -137,11 +137,11 @@ begin
 end
 
 /-
-In the above proof, we used `have` to prepare facts for linarith consumption in the last line.
-Since we have direct proof terms for them, we can feed them directly to linarith as in the next proof
+In the above proof, we used `have` to prepare facts for `linarith` consumption in the last line.
+Since we have direct proof terms for them, we can feed them directly to `linarith` as in the next proof
 of the same statement.
-Another variation we introduce is rewriting using ge_max_iff and letting linarith handling the
-conjunction instead of creating two new assumptions.
+Another variation we introduce is rewriting using `ge_max_iff` and letting `linarith` handle the
+conjunction, instead of creating two new assumptions.
 -/
 
 example (hu : seq_limit u l) (hv : seq_limit v l') :
@@ -179,7 +179,7 @@ begin
   specialize h' n,
   rw abs_le at *,
   split,
-  -- Here linarith can finish, but on paper we would write
+  -- Here `linarith` can finish, but on paper we would write
   calc -ε ≤ u n - l : by linarith
       ... ≤ v n - l : by linarith,
   calc v n - l ≤ w n - l : by linarith
@@ -210,7 +210,7 @@ begin
   -- sorry
 end
 
-/- In the next exercice, we'll use
+/- In the next exercise, we'll use
 
 eq_of_abs_sub_le_all (x y : ℝ) : (∀ ε > 0, |x - y| ≤ ε) → x = y
 -/

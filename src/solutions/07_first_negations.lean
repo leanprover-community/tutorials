@@ -1,16 +1,16 @@
 import tuto_lib
 import data.int.parity
 /-
-Negations, proof by contradiction and contraposition
+Negations, proof by contradiction and contraposition.
 
 This file introduces the logical rules and tactics related to negation:
 exfalso, by_contradiction, contrapose, by_cases and push_neg.
 
-There is a special statement denoted by false which, by definition,
+There is a special statement denoted by `false` which, by definition,
 has no proof.
 
-So false implies everything. Indeed `false → P` means any proof of 
-false could be turned into a proof of P.
+So `false` implies everything. Indeed `false → P` means any proof of 
+`false` could be turned into a proof of P.
 This fact is known by its latin name
 "ex falso quod libet" (from false follows whatever you want).
 Hence Lean's tactic to invoke this is called `exfalso`.
@@ -24,13 +24,13 @@ begin
 end
 
 /-
-The preceding example suggest the definition of false isn't very useful.
-But actually it allows to define the negation of a statement P as
-"P implies False" that we can read as "if P were true, we would get 
-a contradiction". Lean denote this by `¬ P`.
+The preceding example suggests that this definition of `false` isn't very useful.
+But actually it allows us to define the negation of a statement P as
+"P implies false" that we can read as "if P were true, we would get 
+a contradiction". Lean denotes this by `¬ P`.
 
 One can prove that (¬ P) ↔ (P ↔ false). But in practice we directly
-use the definition of ¬ P.
+use the definition of `¬ P`.
 -/
 
 example {x : ℝ} : ¬ x < x :=
@@ -74,20 +74,20 @@ end
 The definition of negation easily implies that, for every statement P,
 P → ¬ ¬ P
 
-The excluded middle axiom, which asserts P ∨ ¬ P allows to
+The excluded middle axiom, which asserts P ∨ ¬ P allows us to
 prove the converse implication.
 
-Together those implications form the principle of double negation elimination.
+Together those two implications form the principle of double negation elimination.
   not_not {P : Prop} : (¬ ¬ P) ↔ P
 
-The implication ¬ ¬ P → P is the basic for proofs by contradiction:
-in order to prove P, it suffices to prove ¬¬ P, ie ¬ P → false.
+The implication `¬ ¬ P → P` is the basis for proofs by contradiction:
+in order to prove P, it suffices to prove ¬¬ P, ie `¬ P → false`.
 
 Of course there is no need to keep explaining all this. The tactic
-by_contradiction Hyp,
-transform any goal P into false and adds Hyp : ¬ P to the local context.
+`by_contradiction Hyp` will transform any goal P into `false` and 
+add Hyp : ¬ P to the local context.
 
-Let's return to a proof of the 5th file: uniqueness of limits for a sequence.
+Let's return to a proof from the 5th file: uniqueness of limits for a sequence.
 This cannot be proved without using some version of the excluded middle
 axiom. We used it secretely in
 
@@ -113,7 +113,7 @@ begin
          ... ≤ |l - u N₀| + |u N₀ - l'|  : by apply abs_add
          ... = |u N₀ - l| + |u N₀ - l'|  : by rw abs_sub
          ... < |l-l'|                    : by linarith,
-  linarith, -- linarith can also found easy numerical contradictions
+  linarith, -- linarith can also find simple numerical contradictions
 end
 
 /-
@@ -134,8 +134,8 @@ begin
 end
 
 /-
-Again Lean doesn't need to be explained this principle, we can use the
-contrapose tactic.
+Again Lean doesn't need to be explain this principle. We can use the
+`contrapose` tactic.
 -/
 
 example (P Q : Prop) (h : ¬ Q → ¬ P) : P → Q :=
@@ -166,12 +166,12 @@ begin
   -- sorry
 end
 /-
-As a last step of our excluded middle tour, let's notice that, especially
+As a last step on our law of the excluded middle tour, let's notice that, especially
 in pure logic exercises, it can sometimes be useful to use the
 excluded middle axiom in its original form:
   classical.em : ∀ P, P ∨ ¬ P
 
-Instead of applying this lemma and then using the cases tactic, we
+Instead of applying this lemma and then using the `cases` tactic, we
 have the shortcut
  by_cases h : P,
 
@@ -240,7 +240,7 @@ begin
 end
 
 /-
-Contrary to begation of the existential quantifier, negation of the
+Contrary to negation of the existential quantifier, negation of the
 universal quantifier requires excluded middle for the first implication.
 In order to prove this, we can use either
 * a double proof by contradiction

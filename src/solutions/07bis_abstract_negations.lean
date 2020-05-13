@@ -8,9 +8,9 @@ Theoretical negations.
 This file is for people interested in logic who want to fully understand
 negations.
 
-Here we don't use contrapose or push_neg. The goal is to prove lemmas
+Here we don't use `contrapose` or `push_neg`. The goal is to prove lemmas
 that are used by those tactics. Of course we can use
-exfalso, by_contradiction et by_cases.
+`exfalso`, `by_contradiction` and `by_cases`.
 
 If this doesn't sound like fun then skip ahead to the next file.
 -/
@@ -50,7 +50,7 @@ begin
   -- sorry
 end
 
--- In the one, let's use the axiom
+-- In the next one, let's use the axiom
 -- propext {P Q : Prop} : (P ↔ Q) → P = Q
 
 -- 0057
