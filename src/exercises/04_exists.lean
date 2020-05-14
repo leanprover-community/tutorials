@@ -88,7 +88,7 @@ begin
 end
 
 /-
-We can nom start combining quantifiers, using the definition
+We can now start combining quantifiers, using the definition
 
   surjective (f : X → Y) := ∀ y, ∃ x, f x = y
 
