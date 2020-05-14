@@ -67,7 +67,7 @@ variables {u : ℕ → ℝ} {a l : ℝ}
 /-
 In the exercise, we use `∃ n ≥ N, ...` which is the abbreviation of
 `∃ n, n ≥ N ∧ ...`.
-Lean can read this abbreviation, but displays as the confusing :
+Lean can read this abbreviation, but displays it as the confusing:
 `∃ (n : ℕ) (H : n ≥ N)`
 One gets used to it. Alternatively, one can get rid of it using the lemma
   exists_prop {p q : Prop} : (∃ (h : p), q) ↔ p ∧ q
@@ -103,7 +103,7 @@ begin
   sorry
 end
 
-/-- cauchy_sequence sequence -/
+/-- Cauchy_sequence sequence -/
 def cauchy_sequence (u : ℕ → ℝ) := ∀ ε > 0, ∃ N, ∀ p q, p ≥ N → q ≥ N → |u p - u q| ≤ ε
 
 -- 0043

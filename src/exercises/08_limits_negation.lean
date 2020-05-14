@@ -4,18 +4,19 @@ import tuto_lib
 section
 /-
 The first part of this file makes sure you can negate quantified statements
-in your head without the help of push_neg.
+in your head without the help of `push_neg`.
 
 You need to complete the statement and then use the `check_me` tactic
 to check your answer. This tactic exists only for those exercises,
-it mostly calls push_neg and clean up a bit.
+it mostly calls `push_neg` and then cleans up a bit.
 
 def seq_limit (u : ℕ → ℝ) (l : ℝ) : Prop :=
 ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| ≤ ε
 -/
 
--- Dans cette section, u désigne une suite de réels, f une fonction
--- de ℝ dans ℝ, et x₀ et l des réels.
+-- In this section, u denotes a sequence of real numbers
+-- f is a function from ℝ to ℝ
+-- x₀ and l are real numbers
 variables (u : ℕ → ℝ) (f : ℝ → ℝ) (x₀ l : ℝ)
 
 /- Negation of "u tends to l" -/
@@ -65,9 +66,9 @@ end
 
 /-
 We now turn to elementary applications of negations to limits of sequences.
-Remember linarith can find easy numerical contradictions.
+Remember that `linarith` can find easy numerical contradictions.
 
-Remember also the lemmas:
+Also recall the following lemmas:
 
 abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
@@ -105,7 +106,7 @@ The notation `∀ x ∈ A, ...` is the abbreviation of `∀ x, x ∈ A → ... `
 The notation `∃ x ∈ A, ...` is the abbreviation of `∃ x, x ∈ A ∧ ... `.
 More precisely it is the abbreviation of `∃ x (H : x ∈ A), ...`
 which is Lean's strange way of saying `∃ x, x ∈ A ∧ ... `. 
-You can convert between both form using the lemma 
+You can convert between these forms using the lemma 
   exists_prop {p q : Prop} : (∃ (h : p), q) ↔ p ∧ q
 
 We'll work with upper bounds and supremums.

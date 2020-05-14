@@ -4,12 +4,12 @@ set_option pp.beta true
 set_option pp.coercions false
 
 /-
-This is the final file in this series. Here we use everything covered
+This is the final file in the series. Here we use everything covered
 in previous files to prove a couple of famous theorems from 
 elementary real analysis. Of course they all have more general versions
 in mathlib.
 
-As usual, keep in mind:
+As usual, keep in mind the following:
 
   abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
@@ -34,11 +34,11 @@ begin
 end
 
 /-
-Let's now return to the result proved in the 0th file of this series, 
-and reprove the sequential characterization of upper bounds (with a slighly
+Let's now return to the result proved in the `00_` file of this series, 
+and prove again the sequential characterization of upper bounds (with a slighly
 different proof).
 
-For this, and other exercises below, we'll need many things proved in previous files,
+For this, and other exercises below, we'll need many things that we proved in previous files,
 and a couple of extras.
 
 From the 5th file:
@@ -158,7 +158,7 @@ begin
 end
 
 /-
-We will use segments Icc a b := { x | a ≤ x ∧ x ≤ b }
+We will use segments: Icc a b := { x | a ≤ x ∧ x ≤ b }
 The notation stands for Interval-closed-closed. Variations exist with
 o or i instead of c, where o stands for open and i for infinity.
 
@@ -182,7 +182,7 @@ begin
 end
 
 /-
-In the next exercice, we can use:
+In the next exercise, we can use:
 
   abs_neg x : |-x| = |x|
 -/
@@ -195,7 +195,7 @@ begin
 end
 
 /-
-Now let's combine the two exercices above
+Now let's combine the two exercises above
 -/
 
 -- 0079
