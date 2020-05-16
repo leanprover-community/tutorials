@@ -520,3 +520,12 @@ begin
     exact fact.right },
   -- sorry
 end
+
+/-
+Note that `rw ← dvd_gcd_iff` completely closes the `fact` goal in the above proof. 
+The default behaviour for `rw` is to automatically close upon its 
+invocation any remaining goals that can be proved by `refl`. The goal obtained after the 
+`rw` is `gcd a b ∣ gcd a b` and it belongs to this category because `dvd_refl` is tagged with
+the `refl` attribute.
+-/
+
