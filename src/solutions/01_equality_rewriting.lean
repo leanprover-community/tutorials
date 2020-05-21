@@ -145,9 +145,9 @@ begin
 end
 
 /-
-The preceding proofs have exhauted our supply of "mul_comm" patience. Now it's time
+The preceding proofs have exhausted our supply of "mul_comm" patience. Now it's time
 to get the computer to work harder. The `ring` tactic will prove any goal that follows by
-applying only the axioms of commutative (semi-)rings, in particuler commutativity and 
+applying only the axioms of commutative (semi-)rings, in particular commutativity and 
 associativity of addition and multiplication, as well as distributivity.
 
 We also note that curly braces are not necessary when we write a single tactic proof, so 
