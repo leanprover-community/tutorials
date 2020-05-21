@@ -67,9 +67,9 @@ From the 8th:
 
   lt_sup (hx : is_sup A x) : ∀ y, y < x → ∃ a ∈ A, y < a :=
 
-You can also use
+You can also use:
 
-  inv_succ_pos : ∀ n : ℕ, 1/(n + 1 : ℝ) > 0
+  nat.one_div_pos_of_nat {n : ℕ} : 0 < 1 / (n + 1 : ℝ)
 
   inv_succ_le_all :  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, 1/(n + 1 : ℝ) ≤ ε
 
@@ -85,6 +85,7 @@ The structure of the proof is offered. It features a new tactic:
 `choose` which invokes the axiom of choice (observing the tactic state before and
 after using it should be enough to understand everything). 
 -/
+
 -- 0072
 lemma is_sup_iff (A : set ℝ) (x : ℝ) :
 (is_sup A x) ↔ (upper_bound A x ∧ ∃ u : ℕ → ℝ, seq_limit u x ∧ ∀ n, u n ∈ A ) :=
