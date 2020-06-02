@@ -496,7 +496,7 @@ only use the following three lemmas:
 
   dvd_refl (a : ℕ) : a ∣ a 
 
-  dvd_antisym {a b : ℕ} : a ∣ b → b ∣ a → a = b :=
+  dvd_antisymm {a b : ℕ} : a ∣ b → b ∣ a → a = b :=
   
   dvd_gcd_iff {a b c : ℕ} : c ∣ gcd a b ↔ c ∣ a ∧ c ∣ b
 -/
