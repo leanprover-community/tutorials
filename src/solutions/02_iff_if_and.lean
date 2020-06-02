@@ -292,7 +292,7 @@ But this can be rephrased as
 In order to prove P → Q, we use the tactic `intros`, followed by an assumption name.
 This creates an assumption with that name asserting that P holds, and turns the goal into Q.
 
-Let's check we can go from our old version of l`e_add_of_nonneg_left` to the new one.
+Let's check we can go from our old version of `le_add_of_nonneg_left` to the new one.
 
 -/
 example (a b : ℝ): 0 ≤ a → b ≤ a + b :=
