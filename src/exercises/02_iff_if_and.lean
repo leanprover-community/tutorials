@@ -131,7 +131,7 @@ from the local context) is also backward reasonning.
 
 Let's do that using the lemma
   
-  mul_nonneg' {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) : 0 ≤ x*y
+  mul_nonneg {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) : 0 ≤ x*y
 -/
 
 example (a b c  : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a*c ≤ b*c :=
@@ -140,7 +140,7 @@ begin
   have key : b*c - a*c = (b - a)*c,
   { ring },
   rw key,
-  apply mul_nonneg', -- Here we don't provide proofs for the lemma's assumptions
+  apply mul_nonneg, -- Here we don't provide proofs for the lemma's assumptions
   -- Now we need to provide the proofs.
   { rw sub_nonneg,
     exact hab },
@@ -158,7 +158,7 @@ begin
   { rw ← sub_nonneg at hab,
     exact hab, },
   have h₁ : 0 ≤ (b - a)*c,
-  { exact mul_nonneg' hab' hc },
+  { exact mul_nonneg hab' hc },
   have h₂ : (b - a)*c = b*c - a*c,
   { ring, },
   have h₃ : 0 ≤ b*c - a*c,
@@ -171,7 +171,7 @@ end
 /-
 One reason why the backward reasoning proof is shorter is because Lean can
 infer of lot of things by comparing the goal and the lemma statement. Indeed
-in the `apply mul_nonneg'` line, we didn't need to tell Lean that x = b - a 
+in the `apply mul_nonneg` line, we didn't need to tell Lean that x = b - a 
 and y = c in the lemma. It was infered by "unification" between the lemma
 statement and the goal.
 
@@ -185,7 +185,7 @@ begin
   have hab' : 0 ≤ b - a,
   { rwa ← sub_nonneg at hab, },
   have h₁ : 0 ≤ (b - a)*c,
-  { exact mul_nonneg' hab' hc },
+  { exact mul_nonneg hab' hc },
   have h₂ : (b - a)*c = b*c - a*c,
   { ring, },
   have h₃ : 0 ≤ b*c - a*c,
@@ -196,12 +196,12 @@ end
 /-
 Let's now combine forward and backward reasonning, to get our most 
 efficient proof of this statement. Note in particular how unification is used
-to know what to prove inside the parentheses in the `mul_nonneg'` arguments.
+to know what to prove inside the parentheses in the `mul_nonneg` arguments.
 -/
 example (a b c : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a*c ≤ b*c :=
 begin
   rw ← sub_nonneg,
-  calc 0 ≤ (b - a)*c  : mul_nonneg' (by rwa sub_nonneg) hc
+  calc 0 ≤ (b - a)*c  : mul_nonneg (by rwa sub_nonneg) hc
      ... =  b*c - a*c : by ring,
 end
 

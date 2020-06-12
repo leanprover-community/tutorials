@@ -133,7 +133,7 @@ We now define `a` is an infimum of `A`. Again there is already a more general ve
 in mathlib.
 -/
 def is_inf (x : ℝ) (A : set ℝ) := x is_a_max_of (low_bounds A)
-infix `is_an_inf_of`:55 := is_inf
+infix ` is_an_inf_of `:55 := is_inf
 
 /-
 We need to prove that any number which is greater than the infimum of A is greater
