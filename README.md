@@ -14,7 +14,7 @@ from a first year undergraduate course by Patrick Massot in Orsay,
 adding only explanations about compressing proofs using slightly advanced
 tactics like `rintros` and `rcases`.
 
-What you do need first is to [install Lean](https://github.com/leanprover-community/mathlib/blob/master/README.md) and [get this project](https://github.com/leanprover-community/mathlib/blob/master/docs/install/project.md) for local use by typing:
+What you do need first is to [install Lean](https://leanprover-community.github.io/get_started.html#regular-install) and [get this project](https://leanprover-community.github.io/install/project.html#working-on-an-existing-package) for local use by typing:
 ```
 leanproject get tutorials
 ```
