@@ -19,7 +19,7 @@ What you do need first is to [install Lean](https://leanprover-community.github.
 leanproject get tutorials
 ```
 
-Then, in the `src` folder, create a copy of the exercises folder for you work.
+Then, in the `tutorials/src` folder, create a copy of the exercises folder for you work.
 This way it won't be overwritten if you update the project to get new exercices.
 You can then open the tutorials folder in VS code. The first file
 `00_first_proofs.lean` does not contain any exercise, it is meant as an
