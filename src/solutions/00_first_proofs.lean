@@ -12,9 +12,9 @@ noncomputable theory
 open_locale classical
 
 
-/- 
+/-
 Our first goal is to define the set of upper bounds of a set of real numbers.
-This is already defined in mathlib (in a more general context), but we repeat 
+This is already defined in mathlib (in a more general context), but we repeat
 it for the sake of exposition. Right-click "upper_bounds" below to get offered
 to jump to mathlib's version
 -/
@@ -26,33 +26,33 @@ def up_bounds (A : set ℝ) := { x : ℝ | ∀ a ∈ A, a ≤ x}
 /-- Predicate `is_max a A` means `a` is a maximum of `A` -/
 def is_max (a : ℝ) (A : set ℝ) := a ∈ A ∧ a ∈ up_bounds A
 
-/- 
-In the above definition, the symbol `∧` means "and". We also see the most 
-visible difference between set theoretic foundations and type theoretic ones 
+/-
+In the above definition, the symbol `∧` means "and". We also see the most
+visible difference between set theoretic foundations and type theoretic ones
 (used by almost all proof assistants). In set theory, everything is a set, and the
-only relation you get from foundations are `=` and `∈`. In type theory, there is 
+only relation you get from foundations are `=` and `∈`. In type theory, there is
 a meta-theoretic relation of "typing": `a : ℝ` reads "`a` is a real number" or,
-more precisely, "the type of `a` is `ℝ`". Here "meta-theoretic" means this is not a 
+more precisely, "the type of `a` is `ℝ`". Here "meta-theoretic" means this is not a
 statement you can prove or disprove inside the theory, it's a fact that is true or
 not. Here we impose this fact, in other circumstances, it would be checked by the
 Lean kernel.
-By contrast, `a ∈ A` is a statement inside the theory. Here it's part of the 
+By contrast, `a ∈ A` is a statement inside the theory. Here it's part of the
 definition, in other circumstances it could be something proven inside Lean.
 -/
 
 /- For illustrative purposes, we now define an infix version of the above predicate.
 It will allow us to write `a is_a_max_of A`, which is closer to a sentence.
 -/
-infix `is_a_max_of`:55 := is_max
+infix ` is_a_max_of `:55 := is_max
 
 /-
-Let's prove something now! A set of real numbers has at most one maximum. Here 
+Let's prove something now! A set of real numbers has at most one maximum. Here
 everything left of the final `:` is introducing the objects and assumption. The equality
 `x = y` right of the colon is the conclusion.
 -/
 lemma unique_max (A : set ℝ) (x y : ℝ) (hx : x is_a_max_of A) (hy : y is_a_max_of A) : x = y :=
 begin
-  -- We first break our assumptions in their two constituent pieces. 
+  -- We first break our assumptions in their two constituent pieces.
   -- We are free to choose the name following `with`
   cases hx with x_in x_up,
   cases hy with y_in y_up,
@@ -62,7 +62,7 @@ begin
   specialize x_up y_in,
   -- Let's do this quicker with roles swapped
   specialize y_up x x_in,
-  -- We explained to Lean the idea of this proof. 
+  -- We explained to Lean the idea of this proof.
   -- Now we know `x ≤ y` and `y ≤ x`, and Lean shouldn't need more help.
   -- `linarith` proves equalities and inequalities that follow linearly from
   -- the assumption we have.
@@ -86,7 +86,7 @@ begin
 end
 
 /-
-Notice how mathematics based on type theory treats the assumption 
+Notice how mathematics based on type theory treats the assumption
 `∀ a ∈ A, a ≤ y` as a function turning an element `a` of `A` into the statement
 `a ≤ y`. More precisely, this assumption is the abbreviation of
 `∀ a : ℝ, a ∈ A → a ≤ y`. The expression `hy.2 x` appearing in the above proof
@@ -96,7 +96,7 @@ indeed a proof of `x ≤ y`.
 
 One could argue a three-line-long proof of this lemma is still two lines too long.
 This is debatable, but mathlib's style is to write very short proofs for trivial
-lemmas. Those proofs are not easy to read but they are meant to indicate that the 
+lemmas. Those proofs are not easy to read but they are meant to indicate that the
 proof is probably not worth reading.
 
 In order to reach this stage, we need to know what `linarith` did for us. It invoked
@@ -116,7 +116,7 @@ le_antisymm (hy.2 x hx.1) (hx.2 y hy.1)
 Such a proof is called a proof term (or a "term mode" proof). Notice it has no `begin`
 and `end`. It is directly the kind of low level proof that the Lean kernel is
 consuming. Commands like `cases`, `specialize` or `linarith` are called tactics, they
-help users constructing proof terms that could be very tedious to write directly. 
+help users constructing proof terms that could be very tedious to write directly.
 The most efficient proof style combines tactics with proof terms like our previous
 `have : x ≤ y, from hy.2 x hx.1` where `hy.2 x hx.1` is a proof term embeded inside
 a tactic mode proof.
@@ -158,7 +158,7 @@ begin
 end
 
 /-
-In the above proof, the sequence `contrapose, push_neg` is so common that it can be 
+In the above proof, the sequence `contrapose, push_neg` is so common that it can be
 abbreviated to `contrapose!`. With these commands, we enter the gray zone between
 proof checking and proof finding. Practical computer proof checking crucially needs
 the computer to handle tedious proof steps. In the next proof, we'll start using
@@ -184,10 +184,10 @@ begin
   linarith,
 end
 
-/- 
+/-
 Note how `linarith` was used for both sub-goals at the end of the above proof.
-We could have shortened that using the semi-colon combinator instead of comma, 
-writing `split ; linarith`. 
+We could have shortened that using the semi-colon combinator instead of comma,
+writing `split ; linarith`.
 
 Next we will study a compressed version of that proof:
 -/
@@ -203,15 +203,15 @@ The angle brackets `⟨` and `⟩` introduce compound data or proofs. A proof
 of a `∃ z, P z` statemement is composed of a witness `z₀` and a proof `h` of
 `P z₀`. The compound is denoted by `⟨z₀, h⟩`. In the example above, the predicate is
 itself compound, it is a conjunction `P z ∧ Q z`. So the proof term should read
-`⟨z₀, ⟨h₁, h₂⟩⟩` where `h₁` (resp. `h₂`) is a proof of `P z₀` (resp. `Q z₀`). 
+`⟨z₀, ⟨h₁, h₂⟩⟩` where `h₁` (resp. `h₂`) is a proof of `P z₀` (resp. `Q z₀`).
 But these so-called "anonymous constructor" brackets are right-associative, so we can
-get rid of the nested brackets. 
+get rid of the nested brackets.
 
 The keyword `by` introduces tactic mode inside term mode, it is a shorter version
 of the `begin`/`end` pair, which is more convenient for single tactic blocks.
 In this example, `begin` enters tactic mode, `exact` leaves it, `by` re-enters it.
 
-Going all the way to a proof term would make the proof much longer, because we 
+Going all the way to a proof term would make the proof much longer, because we
 crucially use automation with `contrapose!` and `linarith`. We can still get a one-line
 proof using curly braces to gather several tactic invocations, and the `by` abbreviation
 instead of `begin`/`end`:
@@ -233,11 +233,11 @@ begin
   -- Assume the conclusion is false, and call this assumption H.
   by_contradiction H,
   push_neg at H,
-  -- Now let's compute. 
+  -- Now let's compute.
   have key := calc
   -- Each line must end with a colon followed by a proof term
   -- We want to specialize our assumption `h` to `ε = (y-x)/2` but this is long to
-  -- type, so let's put a hole `_` that Lean will fill in by comparing the 
+  -- type, so let's put a hole `_` that Lean will fill in by comparing the
   -- statement we want to prove and our proof term with a hole. As usual,
   -- positivity of `(y-x)/2` is proved by `linarith`
     y   ≤ x + (y-x)/2 : h _ (by linarith)
@@ -266,7 +266,7 @@ def limit (u : ℕ → ℝ) (l : ℝ) := ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - 
 
 /-
 In the above definition, `u n` denotes the n-th term of the sequence. We can
-add parentheses to get `u(n)` but we try to avoid parentheses because they pile up 
+add parentheses to get `u(n)` but we try to avoid parentheses because they pile up
 very quickly
 -/
 
@@ -275,7 +275,7 @@ lemma le_lim {x y : ℝ} {u : ℕ → ℝ} (hu : limit u x) (ineq : ∀ n, y ≤
 begin
   -- Let's apply our previous lemma
   apply le_of_le_add_eps,
-  -- We need to prove y ≤ x + ε for all positive ε. 
+  -- We need to prove y ≤ x + ε for all positive ε.
   -- Let ε be any positive real
   intros ε ε_pos,
   -- we now specialize our limit assumption to this `ε`, and immediately
@@ -289,7 +289,7 @@ begin
     -- We need a lemma saying `z ≤ |z|`. Because we don't know the name of this lemma,
     -- let's use `library_search`. Because searching thourgh the library is slow,
     -- Lean will write what it found in the Lean message window when cursor is on
-    -- that line, so that we can replace it by the lemma. We see `le_max_left` which 
+    -- that line, so that we can replace it by the lemma. We see `le_max_left` which
     -- says `a ≤ max a b`. Actually there is a more specific lemma `le_abs_self`
   ... ≤ x + |u N - x| : add_le_add (by linarith) (by library_search)
   ... ≤ x + ε         : add_le_add (by linarith) (HN N (by linarith)),
@@ -297,8 +297,8 @@ end
 
 /-
 The next lemma has been extracted from the main proof in order to discuss numbers.
-In ordinary maths, we know that ℕ is *not* contained in `ℝ`, whatever the 
-construction of real numbers that we use. For instance a natural number is not 
+In ordinary maths, we know that ℕ is *not* contained in `ℝ`, whatever the
+construction of real numbers that we use. For instance a natural number is not
 an equivalence class of Cauchy sequences. But it's very easy to
 pretend otherwise. Formal maths requires slightly more care. In the statement below,
 the "type ascription" `(n + 1 : ℝ)` forces Lean to convert the natural number
@@ -312,12 +312,12 @@ lemma inv_succ_pos : ∀ n : ℕ, 1/(n+1 : ℝ) > 0 :=
 begin
   -- Let `n` be any integer
   intro n,
-  -- Since we don't know the name of the relevant lemma, asserting that the inverse of 
+  -- Since we don't know the name of the relevant lemma, asserting that the inverse of
   -- a positive number is positive, let's state that is suffices
   -- to prove that `n+1`, seen as a real number, is positive, and ask `library_search`
   suffices : (n + 1 : ℝ) > 0,
   { library_search },
-  -- Now we want to reduce to a statement about natural numbers, not real numbers 
+  -- Now we want to reduce to a statement about natural numbers, not real numbers
   -- coming from natural numbers.
   norm_cast,
   -- and then get the usual help from `linarith`
@@ -325,12 +325,12 @@ begin
 end
 
 /-
-That was a pretty long proof for an obvious fact. And stating it as a lemma feels 
+That was a pretty long proof for an obvious fact. And stating it as a lemma feels
 stupid, so let's find a way to write it on one line in case we want to include it
 in some other proof without stating a lemma. First the `library_search` call
 above displays the name of the relevant lemma: `one_div_pos_of_pos`. We can also
 replace the `linarith` call on the last line by `library_search` to learn the name
-of the lemma `nat.succ_pos` asserting that the successor of a natural number is 
+of the lemma `nat.succ_pos` asserting that the successor of a natural number is
 positive. There is also a variant on `norm_cast` that combines it with `exact`.
 The term mode analogue of `intro` is `λ`. We get down to:
 -/
@@ -346,7 +346,7 @@ lemma limit_inv_succ : ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, 1/(n + 1 : ℝ) ≤
 begin
   intros ε ε_pos,
   suffices : ∃ N : ℕ, 1/ε ≤ N,
-  { -- Because we didn't provide a name for the above statement, Lean called it `this`. 
+  { -- Because we didn't provide a name for the above statement, Lean called it `this`.
     -- Let's fix an `N` that works.
     cases this with N HN,
     use N,
@@ -355,23 +355,23 @@ begin
     -- `div_le_iff' : 0 < b →  (a / b ≤ c ↔ a ≤ b * c)`
     -- `div_le_iff : 0 < b →  (a / b ≤ c ↔ a ≤ c * b)`
     -- the second one will be rewritten from right to left, as indicated by `←`.
-    -- Lean will create a side goal for the required positivity assumption that 
+    -- Lean will create a side goal for the required positivity assumption that
     -- we don't provide for `div_le_iff'`.
     rw [div_le_iff', ← div_le_iff ε_pos],
     -- We want to replace assumption `Hn` by its real counter-part so that
     -- linarith can find what it needs.
     replace Hn : (N : ℝ) ≤ n, exact_mod_cast Hn,
     linarith,
-    -- we are still left with the positivity assumption, but already discussed 
+    -- we are still left with the positivity assumption, but already discussed
     -- how to prove it in the preceding lemma
     exact_mod_cast nat.succ_pos n },
-  -- Now we need to prove that sufficient statement. 
-  -- We want to use that `ℝ` is archimedean. So we start typing 
+  -- Now we need to prove that sufficient statement.
+  -- We want to use that `ℝ` is archimedean. So we start typing
   -- `exact archimedean_` and hit Ctrl-space to see what completion Lean proposes
   -- the lemma `archimedean_iff_nat_le` sounds promising. We select the left to
   -- right implication using `.1`. This a generic lemma for fields equiped with
   -- a linear (ie total) order. We need to provide a proof that `ℝ` is indeed
-  -- archimedean. This is done using the `apply_instance` tactic that will be 
+  -- archimedean. This is done using the `apply_instance` tactic that will be
   -- covered elsewhere.
   exact archimedean_iff_nat_le.1 (by apply_instance) (1/ε),
 end
@@ -406,14 +406,14 @@ begin
       use N,
       intros n hn,
       have : x ≤ u n, from h.1 _ (hu n).1,
-      have := calc 
+      have := calc
         u n < x + 1/(n + 1) : (hu n).2
         ... ≤ x + ε         : add_le_add (le_refl x) (H n hn),
       rw abs_of_nonneg ; linarith },
     { intro n,
       exact (hu n).1 } },
   { intro h,
-    -- Assumption `h` is made of nested compound statements. We can use the 
+    -- Assumption `h` is made of nested compound statements. We can use the
     -- recursive version of `cases` to unpack it in one go.
     rcases h with ⟨x_min, u, lim, huA⟩,
     split,
