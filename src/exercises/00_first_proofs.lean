@@ -7,6 +7,9 @@ Everything is covered again more slowly and with exercises in the next files.
 -- We want real numbers and their basic properties
 import data.real.basic
 
+-- We want to be able to use Lean's built-in "help" functionality
+import tactic.suggest
+
 -- We want to be able to define functions using the law of excluded middle
 noncomputable theory
 open_locale classical
