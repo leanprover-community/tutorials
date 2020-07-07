@@ -20,9 +20,17 @@ leanproject get tutorials
 ```
 
 Then, in the `tutorials/src` folder, create a copy of the exercises folder for you work.
-This way it won't be overwritten if you update the project to get new exercices.
-You can then open the tutorials folder in VS code. The first file
-`00_first_proofs.lean` does not contain any exercise, it is meant as an
+This way it won't be overwritten if you update the project to get new exercices. 
+You can then open the tutorials folder in VS code.
+For instance you can type:
+```
+cp -r tutorials/src/exercises tutorials/src/my_exercises
+code tutorials
+```
+VSCode has a file explorer that you can open by clicking the top icon in 
+the icon column on the left. In this explorer, you can navigate to
+`src/my_exercises` and click on `00_first_proofs.lean`.
+This file does not contain any exercise, it is meant as an
 overview of the basics. You can skip it if you are really eager to start
 coding, but this is not recommended. You don't need to understand
 everything while reading this file, only try to get a feel for what it's
