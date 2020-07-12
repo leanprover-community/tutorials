@@ -1,5 +1,6 @@
 import analysis.specific_limits
 import data.int.parity
+import topology.sequences
 
 attribute [instance] classical.prop_decidable
 
@@ -117,22 +118,6 @@ begin
   linarith,
 end
 
-/- 
-lemma limite_infinie_pas_finie {u : ℕ → ℝ} :
-  limite_infinie_suite u → ∀ x, ¬ seq_limit u x :=
-begin
-  -- sorry
-  intros lim_infinie x lim_x,
-  cases lim_x 1 (by linarith) with N hN,
-  cases lim_infinie (x+2) with N' hN',
-  let N₀ := max N N',
-  specialize hN N₀ (inferieur_max_gauche _ _),
-  specialize hN' N₀ (inferieur_max_droite _ _),
-  rw abs_inferieur_ssi at hN,
-  linarith',
-  -- sorry
-end -/
-
 lemma inv_succ_le_all :  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, 1/(n + 1 : ℝ) ≤ ε :=
 begin
   convert metric.tendsto_at_top.mp (tendsto_one_div_add_at_top_nhds_0_nat),
@@ -198,33 +183,7 @@ begin
   linarith,
 end
 
-lemma extraction_machine (ψ : ℕ → ℕ) (hψ : ∀ n, ψ n ≥ n) : ∃ f : ℕ → ℕ, extraction (ψ ∘ f) ∧ ∀ n, f n ≥ n :=
-begin
-  refine ⟨λ n, nat.rec_on n 0 (λ n ih, ψ ih + 1), λ m n h, _, λ n, _⟩,
-  { induction h; dsimp [(∘)],
-    { exact hψ _ },
-    { exact lt_trans h_ih (hψ _) } },
-  { induction n, {apply le_refl},
-    exact nat.succ_le_succ (le_trans n_ih (hψ _)) }
-end
-
 variables {u : ℕ → ℝ} {l : ℝ} {φ : ℕ → ℕ}
-
-lemma limite_extraction_si_limite (h : seq_limit u l) (hφ : extraction φ) :
-seq_limit (u ∘ φ) l :=
-begin
-  -- sorry
-  intros ε ε_pos,
-  cases h ε ε_pos with N hN,
-  use N,
-  intros n hn,
-  apply hN,
-  calc N ≤ n   : hn 
-     ... ≤ φ n : id_le_extraction hφ n, 
-  -- sorry
-end
-
-def segment (a b : ℝ) := {x | a ≤ x ∧ x ≤ b}
 
 open set filter
 
@@ -234,52 +193,14 @@ def cluster_point (u : ℕ → ℝ) (a : ℝ) :=
 lemma bolzano_weierstrass {a b : ℝ} {u : ℕ → ℝ} (h : ∀ n, u n ∈ Icc a b) :
 ∃ c ∈ Icc a b, cluster_point u c :=
 begin
-  have cpct : compact (Icc a b),
-    exact compact_Icc,
-  have :  map u at_top ≤ principal (Icc a b),
-  { change tendsto u _ _,
-    rw tendsto_principal,
-    filter_upwards [univ_mem_sets],
-    intros n hn,
-    exact h n },
-  rcases cpct (map u at_top) (map_ne_bot at_top_ne_bot) this with ⟨c, h, h'⟩,
-  clear this,
-  use [c, h],
-  unfold cluster_point,
-  have : ∀ N, ∃ n ≥ N, |u n -c| ≤ 1/(N+1),
-    intro N,
-    rw ← forall_sets_nonempty_iff_ne_bot at h',
-    specialize h' (u '' {n | n ≥ N} ∩ {x | |x-c| ≤ 1/(N+1)}) _,
-    { simp only [set.nonempty,
-                set.mem_image,
-                set.mem_inter_eq,
-                ne.def,
-                set.mem_set_of_eq] at h',
-      rcases h' with ⟨_, ⟨n, ⟨hn, rfl⟩⟩, ineg⟩,
-      use [n, hn, ineg] },
-    { apply inter_mem_inf_sets,
-      { apply image_mem_map,
-        apply mem_at_top },
-      { have fact: (0 : ℝ) < 1/(N+2),
-          exact_mod_cast (nat.one_div_pos_of_nat : 1/((N+1 : ℕ) + 1 : ℝ) > 0),
-        apply mem_sets_of_superset (metric.ball_mem_nhds c fact),
-        intros x x_in,
-        rw [metric.mem_ball, real.dist_eq] at x_in,
-        exact le_of_lt (
-          calc |x - c| < 1 / (N + 2) : x_in
-                   ... = 1/((N+1)+1) : by { congr' 1, norm_cast }
-                   ... ≤ 1 / (N + 1) : nat.one_div_le_one_div (nat.le_succ N)),
-
-       } },
-  choose ψ hψ using this,
-  cases forall_and_distrib.mp hψ with hψ_id hψ', clear hψ,
-  rcases extraction_machine ψ hψ_id with ⟨f, hf, hf'⟩,
-  use [ψ ∘ f, hf],
-  apply limit_of_sub_le_inv_succ,
-  intros n,
-  transitivity 1/(f n + 1 : ℝ),
-  apply hψ',
-  exact nat.one_div_le_one_div (hf' n),
+  rcases (compact_Icc : is_compact (Icc a b)).tendsto_subseq h with ⟨c, c_in, φ, hφ, lim⟩,
+  use [c, c_in, φ, hφ],
+  simp_rw [metric.tendsto_nhds, eventually_at_top, real.dist_eq] at lim,
+  intros ε ε_pos,
+  rcases lim ε ε_pos with ⟨N, hN⟩,
+  use N,
+  intros n hn,
+  exact le_of_lt (hN n hn)
 end
 
 lemma not_seq_limit_of_tendstoinfinity {u : ℕ → ℝ} :
