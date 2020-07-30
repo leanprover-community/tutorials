@@ -1,5 +1,4 @@
 import data.real.basic
-import algebra.pi_instances
 
 set_option pp.beta true
 
@@ -28,6 +27,15 @@ Let's define two predicates to play with ∀.
 def even_fun (f : ℝ → ℝ) := ∀ x, f (-x) = f x
 
 def odd_fun (f : ℝ → ℝ) := ∀ x, f (-x) = -f x
+
+/-
+The following is required for the next proofs.
+We tell lean that it makes sense to add two functions of the
+same type if their range type can be added.
+-/
+instance fun_has_add {α : Type} {β : Type} [has_add β] :
+  has_add (α → β) :=
+⟨λ f g x, f x + g x⟩
 
 /-
 In the next proof, we also take the opportunity to introduce the 
