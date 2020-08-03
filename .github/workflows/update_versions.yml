@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_lean_xyz_branch:
+    runs-on: ubuntu-latest
+    name: Update lean-x.y.z branch
+    steps:
+
+    - name: checkout project
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: update branch
+      uses: leanprover-contrib/update-versions-action@master
