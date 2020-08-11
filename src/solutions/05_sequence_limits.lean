@@ -1,5 +1,5 @@
 import data.real.basic
-import algebra.pi_instances
+import algebra.group.pi
 import tuto_lib
 
 notation `|`x`|` := abs x

@@ -331,7 +331,7 @@ end
 That was a pretty long proof for an obvious fact. And stating it as a lemma feels
 stupid, so let's find a way to write it on one line in case we want to include it
 in some other proof without stating a lemma. First the `library_search` call
-above displays the name of the relevant lemma: `one_div_pos_of_pos`. We can also
+above displays the name of the relevant lemma: `one_div_pos`. We can also
 replace the `linarith` call on the last line by `library_search` to learn the name
 of the lemma `nat.succ_pos` asserting that the successor of a natural number is
 positive. There is also a variant on `norm_cast` that combines it with `exact`.
@@ -339,7 +339,7 @@ The term mode analogue of `intro` is `λ`. We get down to:
 -/
 
 example : ∀ n : ℕ, 1/(n+1 : ℝ) > 0 :=
-λ n, one_div_pos_of_pos (by exact_mod_cast nat.succ_pos n)
+λ n, one_div_pos.mpr (by exact_mod_cast nat.succ_pos n)
 
 /-
 The next proof uses mostly known things, so we will commment only new aspects.
