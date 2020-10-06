@@ -131,7 +131,7 @@ end
 /-
 In the next exercise, we'll use
  odd n : ∃ k, n = 2*k + 1
- not_even_iff_odd : ¬ even n ↔ odd n,
+ int.odd_iff_not_even {n : ℤ} : odd n ↔ ¬ even n
 -/
 -- 0048
 example (n : ℤ) : even (n^2) ↔ even n :=

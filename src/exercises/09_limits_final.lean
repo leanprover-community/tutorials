@@ -272,7 +272,7 @@ begin
     sorry
   },
   have : f x₀ ≥ 0,
-  { have dans : ∃ N : ℕ, ∀ n ≥ N, x₀ + 1/(n+1) ∈ I,
+  { have in_I : ∃ N : ℕ, ∀ n ≥ N, x₀ + 1/(n+1) ∈ I,
     { have : ∃ N : ℕ, ∀ n≥ N, 1/(n+1 : ℝ) ≤ 1-x₀,
       {
         sorry

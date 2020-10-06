@@ -47,22 +47,6 @@ begin
   ... = ε : by ring,
 end
 
-def pair (n : ℤ) := ∃ k, n = 2*k
-
-def int.odd (n : ℤ) := ∃ k, n = 2*k + 1
-
-lemma int.not_even_iff_odd {n : ℤ} : ¬ int.even n ↔ int.odd n :=
-begin
-  rw int.not_even_iff,
-  split ; intro h,
-  use n/2,
-  conv_rhs { rw add_comm, congr, rw ← h },
-  exact (int.mod_add_div n 2).symm,
-  rcases h with ⟨k, rfl⟩,
-  simp [add_comm],
-  refl,
-end
-
 lemma le_of_le_add_all {x y : ℝ} :
   (∀ ε > 0, y ≤ x + ε) →  y ≤ x :=
 begin
