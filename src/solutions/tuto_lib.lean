@@ -241,6 +241,6 @@ meta def check_me : tactic unit :=
    push_neg,
    try { simp only [exists_prop] },
    try { exact iff.rfl },
-   done } <|> fail "Ce n'est pas cela. Essayez encore." ]
+   done } <|> fail "That's not quite right. Please try again." ]
 
 end tactic.interactive
