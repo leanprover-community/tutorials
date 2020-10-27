@@ -12,14 +12,14 @@ were proved without name in previous files.
 notation `|`x`|` := abs x
 
 -- The mathlib version is unusable because it is stated in terms of ≤
-lemma ge_max_iff {α : Type*} [decidable_linear_order α] {p q r : α} : r ≥ max p q  ↔ r ≥ p ∧ r ≥ q :=
+lemma ge_max_iff {α : Type*} [linear_order α] {p q r : α} : r ≥ max p q  ↔ r ≥ p ∧ r ≥ q :=
 max_le_iff
 
 /- No idea why this is not in mathlib-/
 lemma eq_of_abs_sub_le_all (x y : ℝ) : (∀ ε > 0, |x - y| ≤ ε) → x = y :=
 begin
   intro h, 
-  apply  decidable_linear_ordered_add_comm_group.eq_of_abs_sub_nonpos,
+  apply eq_of_abs_sub_nonpos,
   by_contradiction H,
   push_neg at H,
   specialize h ( |x-y|/2) (by linarith),
