@@ -89,7 +89,7 @@ begin
   by_contradiction H,
   change l ≠ l' at H, -- Lean does not need this line
   have ineg : |l-l'| > 0,
-    exact abs_pos_of_ne_zero (sub_ne_zero_of_ne H),
+    exact abs_pos.mpr (sub_ne_zero_of_ne H),
   cases hl ( |l-l'|/4 ) (by linarith) with N hN,
   cases hl' ( |l-l'|/4 ) (by linarith) with N' hN',
   let N₀ := max N N', -- this is a new tactic, whose effect should be clear
