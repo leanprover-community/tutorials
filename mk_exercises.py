@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import regex
+import re
 from pathlib import Path
 
-sorry_regex = regex.compile(r'(.*)-- sorry.*')
+sorry_regex = re.compile(r'(.*)-- sorry.*')
 root = Path(__file__).parent/'src'
 
 if __name__ == '__main__':
