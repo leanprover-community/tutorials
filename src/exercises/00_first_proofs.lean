@@ -292,9 +292,9 @@ begin
     -- We need a lemma saying `z ≤ |z|`. Because we don't know the name of this lemma,
     -- let's use `library_search`. Because searching thourgh the library is slow,
     -- Lean will write what it found in the Lean message window when cursor is on
-    -- that line, so that we can replace it by the lemma. We see `le_max_self`, which
+    -- that line, so that we can replace it by the lemma. We see `le_abs_self`, which
     -- says `a ≤ |a|`, exactly what we're looking for.
-  ... ≤ x + |u N - x| : add_le_add (by linarith) (le_abs_self (u N - x))
+  ... ≤ x + |u N - x| : add_le_add (by linarith) (by library_search)
   ... ≤ x + ε         : add_le_add (by linarith) (HN N (by linarith)),
 end
 
