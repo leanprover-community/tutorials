@@ -1,6 +1,6 @@
 # lean-tutorials
 
-The goal of this project is to quickly teach you how to use Lean for
+The goal of this project is to quickly teach you how to use Lean 3 for
 mathematics using a very hands-on approach. It can be used alongside
 [Theorem proving in Lean](https://leanprover.github.io/theorem_proving_in_lean/)
 or independently.
@@ -14,7 +14,7 @@ from a first year undergraduate course by Patrick Massot in Orsay,
 adding only explanations about compressing proofs using slightly advanced
 tactics like `rintros` and `rcases`.
 
-What you do need first is to [install Lean](https://leanprover-community.github.io/get_started.html#regular-install) and [get this project](https://leanprover-community.github.io/install/project.html#working-on-an-existing-package) for local use by typing:
+What you do need first is to [install Lean 3](https://leanprover-community.github.io/get_started.html#regular-install) and [get this project](https://leanprover-community.github.io/install/project.html#working-on-an-existing-package) for local use by typing:
 ```
 leanproject get tutorials
 ```
