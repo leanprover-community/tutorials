@@ -77,6 +77,12 @@ Also, Lean doesn't need to be told that hf should be specialized to
 x before rewriting, exactly as in the first file 01_equality_rewriting.
 We can also gather several rewrites using a list of expressions.
 
+One last trick is that `rw` can take a list of expressions to use for
+rewriting. For instance `rw [h₁, h₂, h₃]` is equivalent to three
+lines `rw h₁`, `rw h₂` and `rw h₃`. Note that you can inspect the tactic
+state between those rewrites when reading a proof using this syntax. You
+simply need to move the cursor inside the list.
+
 Hence we can compress the above proof to:
 -/
 
@@ -88,10 +94,8 @@ begin
 end
 
 /-
-Note that the tactic state displays changes when we
-move the cursor inside the list of expressions given to `rw`.
-
-Now let's practice.
+Now let's practice. If you need to learn how to type a unicode symbol,
+you can put your mouse cursor above the symbol and wait for one second.
 -/
 
 -- 0023

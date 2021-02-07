@@ -144,7 +144,7 @@ variables {φ : ℕ → ℕ}
 
 
 -- 0075
-lemma subseq_tenstoinfinity
+lemma subseq_tendstoinfinity
   (h : tendsto_infinity u) (hφ : extraction φ) :
 tendsto_infinity (u ∘ φ) :=
 begin
@@ -163,7 +163,7 @@ We will use segments: Icc a b := { x | a ≤ x ∧ x ≤ b }
 The notation stands for Interval-closed-closed. Variations exist with
 o or i instead of c, where o stands for open and i for infinity.
 
-We will use the following version of Bolzano-Weirstrass
+We will use the following version of Bolzano-Weierstrass
 
   bolzano_weierstrass (h : ∀ n, u n ∈ [a, b]) :
     ∃ c ∈ [a, b], cluster_point u c
@@ -284,7 +284,7 @@ begin
     {
       sorry
     },
-    dsimp [A] at not_in, -- This is useful to unfold a let 
+    dsimp [A] at not_in, 
     sorry
   },
   linarith,

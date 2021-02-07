@@ -47,11 +47,11 @@ end
 open int
 
 -- 0045
-example (n : ℤ) (h_pair : even n) (h_non_pair : ¬ even n) : 0 = 1 :=
+example (n : ℤ) (h_even : even n) (h_not_even : ¬ even n) : 0 = 1 :=
 begin
   -- sorry
   exfalso,
-  exact h_non_pair h_pair,
+  exact h_not_even h_even,
   -- sorry
 end
 
@@ -94,6 +94,12 @@ axiom. We used it secretely in
 eq_of_abs_sub_le_all (x y : ℝ) : (∀ ε > 0, |x - y| ≤ ε) → x = y
 
 (we'll prove a variation on this lemma below).
+
+In the proof below, we also take the opportunity to introduce the `let` tactic
+which creates a local definition. If needed, it can be unfolded using `dsimp` which 
+takes a list of definitions to unfold. For instance after using `let N₀ := max N N'`, 
+you could write `dsimp [N₀] at h` to replace `N₀` by its definition in some
+local assumption `h`.
 -/
 example (u : ℕ → ℝ) (l l' : ℝ) : seq_limit u l → seq_limit u l' → l = l' :=
 begin
@@ -101,10 +107,10 @@ begin
   by_contradiction H,
   change l ≠ l' at H, -- Lean does not need this line
   have ineg : |l-l'| > 0,
-    exact abs_pos.mpr (sub_ne_zero_of_ne H),
+    exact abs_pos.mpr (sub_ne_zero_of_ne H), -- details about that line are not important
   cases hl ( |l-l'|/4 ) (by linarith) with N hN,
   cases hl' ( |l-l'|/4 ) (by linarith) with N' hN',
-  let N₀ := max N N', -- this is a new tactic, whose effect should be clear
+  let N₀ := max N N', 
   specialize hN N₀ (le_max_left _ _),
   specialize hN' N₀ (le_max_right _ _),
   have clef : |l-l'| < |l-l'|,
@@ -134,7 +140,7 @@ begin
 end
 
 /-
-Again Lean doesn't need to be explain this principle. We can use the
+Again Lean doesn't need this principle explained to it. We can use the
 `contrapose` tactic.
 -/
 

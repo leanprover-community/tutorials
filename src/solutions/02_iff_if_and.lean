@@ -113,6 +113,10 @@ auto-completion works by looking at the beginning of words.
 "left" or "right" disambiguates between the two variations.
 
 Let's use those lemmas by hand for now.
+
+Note that you can have several inequalities steps in a `calc` block,
+transitivity of inequalities will be used automatically to assemble
+the pieces.
 -/
 
 -- 0011

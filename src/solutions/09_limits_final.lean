@@ -215,7 +215,7 @@ variables {φ : ℕ → ℕ}
 
 
 -- 0075
-lemma subseq_tenstoinfinity
+lemma subseq_tendstoinfinity
   (h : tendsto_infinity u) (hφ : extraction φ) :
 tendsto_infinity (u ∘ φ) :=
 begin
@@ -250,7 +250,7 @@ We will use segments: Icc a b := { x | a ≤ x ∧ x ≤ b }
 The notation stands for Interval-closed-closed. Variations exist with
 o or i instead of c, where o stands for open and i for infinity.
 
-We will use the following version of Bolzano-Weirstrass
+We will use the following version of Bolzano-Weierstrass
 
   bolzano_weierstrass (h : ∀ n, u n ∈ [a, b]) :
     ∃ c ∈ [a, b], cluster_point u c
@@ -281,7 +281,7 @@ begin
     intro n, exact (hu n).left,
   rcases bolzano_weierstrass bornes with ⟨c, c_dans, φ, φ_extr, lim⟩,
   have lim_infinie_extr : tendsto_infinity (f ∘ (u ∘ φ)),
-    exact subseq_tenstoinfinity lim_infinie φ_extr,
+    exact subseq_tendstoinfinity lim_infinie φ_extr,
   have lim_extr : seq_limit (f ∘ (u ∘ φ)) (f c),
     exact seq_continuous_of_continuous (hf c c_dans) lim,
   exact not_seq_limit_of_tendstoinfinity  lim_infinie_extr (f c) lim_extr,
@@ -479,7 +479,7 @@ begin
       linarith,
       -- sorry
     },
-    dsimp [A] at not_in, -- This is useful to unfold a let 
+    dsimp [A] at not_in, 
     -- sorry
     push_neg at not_in,
     have lim : seq_limit (λ n, f(x₀ + 1/(n+1))) (f x₀),
