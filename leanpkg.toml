@@ -1,8 +1,8 @@
 [package]
 name = "tuto"
 version = "0.1"
-lean_version = "leanprover-community/lean:3.28.0"
+lean_version = "leanprover-community/lean:3.30.0"
 path = "src/solutions"
 
 [dependencies]
-mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "0cc3cd54efb97332e973e0ff1ca94dbd486899eb"}
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "735a26e5e026d6a2b564a0baf27a9fa12cb48866"}
