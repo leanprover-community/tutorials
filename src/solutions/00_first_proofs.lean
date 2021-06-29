@@ -290,7 +290,7 @@ begin
   ... = x + (u N - x) : by linarith
     -- We'll need `add_le_add` which says `a ≤ b` and `c ≤ d` implies `a + c ≤ b + d`
     -- We need a lemma saying `z ≤ |z|`. Because we don't know the name of this lemma,
-    -- let's use `library_search`. Because searching thourgh the library is slow,
+    -- let's use `library_search`. Because searching through the library is slow,
     -- Lean will write what it found in the Lean message window when cursor is on
     -- that line, so that we can replace it by the lemma. We see `le_abs_self`, which
     -- says `a ≤ |a|`, exactly what we're looking for.
