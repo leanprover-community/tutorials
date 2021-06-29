@@ -10,7 +10,7 @@ abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
 abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|
 
-abs_sub (x y : ℝ) : |x - y| = |y - x|
+abs_sub_comm (x y : ℝ) : |x - y| = |y - x|
 
 ge_max_iff (p q r) : r ≥ max p q  ↔ r ≥ p ∧ r ≥ q
 
@@ -143,9 +143,9 @@ begin
   cases hl (ε/2) (by linarith) with N hN,
   use N,
   intros p q hp hq,
-  calc |u p - u q| = |(u p - l) + (l - u q)| : by ring
+  calc |u p - u q| = |(u p - l) + (l - u q)| : by ring_nf
   ... ≤ |u p - l| + |l - u q| : by apply abs_add
-  ... =  |u p - l| + |u q - l| : by rw abs_sub (u q) l
+  ... =  |u p - l| + |u q - l| : by rw abs_sub_comm (u q) l
   ... ≤ ε : by linarith [hN p hp, hN q hq],
   -- sorry
 end

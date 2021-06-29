@@ -40,9 +40,9 @@ begin
   cases hl' with N' hN',
   specialize hN (max N N') (le_max_left _ _),
   specialize hN' (max N N') (le_max_right _ _),
-  calc |l - l'| = |(l-u (max N N')) + (u (max N N') -l')| : by ring
+  calc |l - l'| = |(l-u (max N N')) + (u (max N N') -l')| : by ring_nf
   ... ≤ |l - u (max N N')| + |u (max N N') - l'| : by apply abs_add
-  ... =  |u (max N N') - l| + |u (max N N') - l'| : by rw abs_sub
+  ... = |u (max N N') - l| + |u (max N N') - l'| : by rw abs_sub_comm
   ... ≤ ε/2 + ε/2 : by linarith
   ... = ε : by ring,
 end
@@ -177,7 +177,7 @@ def cluster_point (u : ℕ → ℝ) (a : ℝ) :=
 lemma bolzano_weierstrass {a b : ℝ} {u : ℕ → ℝ} (h : ∀ n, u n ∈ Icc a b) :
 ∃ c ∈ Icc a b, cluster_point u c :=
 begin
-  rcases (compact_Icc : is_compact (Icc a b)).tendsto_subseq h with ⟨c, c_in, φ, hφ, lim⟩,
+  rcases (is_compact_Icc : is_compact (Icc a b)).tendsto_subseq h with ⟨c, c_in, φ, hφ, lim⟩,
   use [c, c_in, φ, hφ],
   simp_rw [metric.tendsto_nhds, eventually_at_top, real.dist_eq] at lim,
   intros ε ε_pos,

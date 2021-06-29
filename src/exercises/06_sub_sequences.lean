@@ -10,7 +10,7 @@ abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
 abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|
 
-abs_sub (x y : ℝ) : |x - y| = |y - x|
+abs_sub_comm (x y : ℝ) : |x - y| = |y - x|
 
 ge_max_iff (p q r) : r ≥ max p q  ↔ r ≥ p ∧ r ≥ q
 

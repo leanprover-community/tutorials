@@ -77,7 +77,7 @@ abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
 abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|
 
-abs_sub (x y : ℝ) : |x - y| = |y - x|
+abs_sub_comm (x y : ℝ) : |x - y| = |y - x|
 
 You should probably write them down on a sheet of paper that you keep at 
 hand since they are used in many exercises.
@@ -225,9 +225,9 @@ begin
   intros ε ε_pos,
   cases hl (ε/2) (by linarith) with N hN,
   cases hl' (ε/2) (by linarith) with N' hN',
-  calc |l - l'| = |(l-u (max N N')) + (u (max N N') -l')| : by ring
+  calc |l - l'| = |(l-u (max N N')) + (u (max N N') -l')| : by ring_nf
   ... ≤ |l - u (max N N')| + |u (max N N') - l'| : by apply abs_add
-  ... =  |u (max N N') - l| + |u (max N N') - l'| : by rw abs_sub
+  ... =  |u (max N N') - l| + |u (max N N') - l'| : by rw abs_sub_comm
   ... ≤ ε : by linarith [hN (max N N') (le_max_left _ _), hN' (max N N') (le_max_right _ _)]
   -- sorry
 end

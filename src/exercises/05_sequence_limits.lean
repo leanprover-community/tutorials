@@ -70,7 +70,7 @@ abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
 abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|
 
-abs_sub (x y : ℝ) : |x - y| = |y - x|
+abs_sub_comm (x y : ℝ) : |x - y| = |y - x|
 
 You should probably write them down on a sheet of paper that you keep at 
 hand since they are used in many exercises.
