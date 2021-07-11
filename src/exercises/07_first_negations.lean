@@ -103,9 +103,9 @@ begin
   specialize hN' N₀ (le_max_right _ _),
   have clef : |l-l'| < |l-l'|,
     calc
-    |l - l'| = |(l-u N₀) + (u N₀ -l')|   : by ring
+    |l - l'| = |(l-u N₀) + (u N₀ -l')|   : by ring_nf
          ... ≤ |l - u N₀| + |u N₀ - l'|  : by apply abs_add
-         ... = |u N₀ - l| + |u N₀ - l'|  : by rw abs_sub
+         ... = |u N₀ - l| + |u N₀ - l'|  : by rw abs_sub_comm
          ... < |l-l'|                    : by linarith,
   linarith, -- linarith can also find simple numerical contradictions
 end
