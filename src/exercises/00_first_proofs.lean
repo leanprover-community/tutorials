@@ -44,7 +44,8 @@ definition, in other circumstances it could be something proven inside Lean.
 -/
 
 /- For illustrative purposes, we now define an infix version of the above predicate.
-It will allow us to write `a is_a_max_of A`, which is closer to a sentence.
+It will allow us to write `a is_a_max_of A`, which is closer to a sentence. Here 55
+stands for the precedence of the binary operator `is_a_max_of`.
 -/
 infix ` is_a_max_of `:55 := is_max
 
