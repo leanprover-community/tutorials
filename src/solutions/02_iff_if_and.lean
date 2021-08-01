@@ -142,13 +142,13 @@ end
 
 /-
 In the above examples, we prepared proofs of assumptions of our lemmas beforehand, so
-that we could feed them to the lemmas. This is called forward reasonning. 
+that we could feed them to the lemmas. This is called forward reasoning. 
 The `calc` proofs also belong to this category.
 
 We can also announce the use of a lemma, and provide proofs after the fact, using 
-the `apply` tactic. This is called backward reasonning because we get the conclusion 
+the `apply` tactic. This is called backward reasoning because we get the conclusion 
 first, and provide proofs later. Using `rw` on the goal (rather than on an assumption 
-from the local context) is also backward reasonning.
+from the local context) is also backward reasoning.
 
 Let's do that using the lemma
   
@@ -169,7 +169,7 @@ begin
 end
 
 /-
-Let's prove the same statement using only forward reasonning: announcing stuff,
+Let's prove the same statement using only forward reasoning: announcing stuff,
 proving it by working with known facts, moving forward.
 -/
 
@@ -215,7 +215,7 @@ begin
 end
 
 /-
-Let's now combine forward and backward reasonning, to get our most 
+Let's now combine forward and backward reasoning, to get our most 
 efficient proof of this statement. Note in particular how unification is used
 to know what to prove inside the parentheses in the `mul_nonneg` arguments.
 -/
@@ -234,7 +234,7 @@ Let's now practice all three styles using:
   sub_nonpos {a b : α} : a - b ≤ 0 ↔ a ≤ b
 -/
 
-/- First using mostly backward reasonning -/
+/- First using mostly backward reasoning -/
 -- 0013
 example (a b c : ℝ) (hc : c ≤ 0) (hab :  a ≤ b) : b*c ≤ a*c :=
 begin
@@ -249,7 +249,7 @@ begin
   -- sorry
 end
 
-/- Using forward reasonning -/
+/- Using forward reasoning -/
 -- 0014
 example (a b c : ℝ) (hc : c ≤ 0) (hab :  a ≤ b) : b*c ≤ a*c :=
 begin
