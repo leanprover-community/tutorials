@@ -1,0 +1,1 @@
+Please make sure you modified the files in `src/solutions` and used the `mk_exercises.py` script to recreate the files in `src/exercises`. Otherwise your modifications will soon be automatically overwritten.
