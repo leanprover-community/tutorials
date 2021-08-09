@@ -209,16 +209,14 @@ begin
     from λ y y_in, (h y_in).2,
   have Sup_maj : upper_bound A (Sup A),
   { intro x,
-    apply real.le_Sup,
+    apply le_cSup,
     use [b, b_maj] } ,
   refine ⟨Sup A, _, _⟩,
   { split,
     { cases hnonvide with x x_in,
       exact le_trans (h x_in).1 (Sup_maj _ x_in) },
-    { apply Sup_le_ub A hnonvide b_maj } },
-  { use Sup_maj,
-    intros y y_in,
-    rwa real.Sup_le _ hnonvide ⟨b, b_maj⟩ },
+    { apply cSup_le hnonvide b_maj } },
+  { exact ⟨Sup_maj, λ y, cSup_le hnonvide⟩ },
 end
 
 lemma subseq_tendsto_of_tendsto (h : seq_limit u l) (hφ : extraction φ) :
