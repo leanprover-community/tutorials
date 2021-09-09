@@ -73,7 +73,7 @@ end
 
 /- When dealing with absolute values, we'll use lemmas:
 
-abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
+abs_le {x y : ℝ} : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
 abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|
 
