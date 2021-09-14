@@ -11,7 +11,7 @@ in mathlib.
 
 As usual, keep in mind the following:
 
-  abs_le (x y : ℝ) : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
+  abs_le {x y : ℝ} : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y
 
   ge_max_iff (p q r) : r ≥ max p q  ↔ r ≥ p ∧ r ≥ q
 
