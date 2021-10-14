@@ -4,12 +4,12 @@ The goal of this project is to quickly teach you how to use Lean 3 for
 mathematics using a very hands-on approach. It can be used alongside
 [Theorem proving in Lean](https://leanprover.github.io/theorem_proving_in_lean/)
 or independently.
-You can first play the 
+You can play the 
 [Natural number game](http://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/)
 first, but this is not mandatory.
 
-Currently, those tutorials do no cover creating your own theories, only
-proving things in elementary real analysis. All exercices are adapted
+Currently, these tutorials do not cover creating your own theories, only
+proving things in elementary real analysis. All exercises are adapted
 from a first year undergraduate course by Patrick Massot in Orsay,
 adding only explanations about compressing proofs using slightly advanced
 tactics like `rintros` and `rcases`.
@@ -37,7 +37,7 @@ everything while reading this file, only try to get a feel for what it's
 looking like, and maybe start picking up some key words.
 
 There are solutions for all the exercises in `src/solutions`. If you
-need help about any specific exercise. You can come on 
+need help about any specific exercise, you can come on 
 [Zulip](https://leanprover.zulipchat.com) in the "new members" stream
 and look for a thread called "tutorials NNNN" where NNNN is the exercise
 number. If no such thread exists, you can create one!
