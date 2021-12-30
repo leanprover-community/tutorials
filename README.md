@@ -1,5 +1,7 @@
 # lean-tutorials
 
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/leanprover-community/tutorials)
+
 The goal of this project is to quickly teach you how to use Lean 3 for
 mathematics using a very hands-on approach. It can be used alongside
 [Theorem proving in Lean](https://leanprover.github.io/theorem_proving_in_lean/)
