@@ -75,7 +75,7 @@ end
 /-
 The above proof is too long, even if you remove comments. We don't really need the
 unpacking steps at the beginning; we can access both parts of the assumption
-`hx : x is_a_max_of A` using shortcuts `h.1` and `h.2`. We can also improve
+`hx : x is_a_max_of A` using shortcuts `hx.1` and `hx.2`. We can also improve
 readability without assistance from the tactic state display, clearly announcing
 intermediate goals using `have`. This way we get to the following version of the
 same proof.
