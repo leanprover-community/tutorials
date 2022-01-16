@@ -20,7 +20,7 @@ leanproject get tutorials
 ```
 
 Then, in the `tutorials/src` folder, create a copy of the exercises folder for you work.
-This way it won't be overwritten if you update the project to get new exercices. 
+This way it won't be overwritten if you update the project to get new exercises. 
 You can then open the tutorials folder in VS code.
 For instance you can type:
 ```
