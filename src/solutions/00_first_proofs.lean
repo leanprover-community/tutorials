@@ -26,8 +26,8 @@ to jump to mathlib's version
 /-- The set of upper bounds of a set of real numbers ℝ -/
 def up_bounds (A : set ℝ) := { x : ℝ | ∀ a ∈ A, a ≤ x}
 
-/-- Predicate `is_max a A` means `a` is a maximum of `A` -/
-def is_max (a : ℝ) (A : set ℝ) := a ∈ A ∧ a ∈ up_bounds A
+/-- Predicate `is_maximum a A` means `a` is a maximum of `A` -/
+def is_maximum (a : ℝ) (A : set ℝ) := a ∈ A ∧ a ∈ up_bounds A
 
 /-
 In the above definition, the symbol `∧` means "and". We also see the most
@@ -46,7 +46,7 @@ definition, in other circumstances it could be something proven inside Lean.
 /- For illustrative purposes, we now define an infix version of the above predicate.
 It will allow us to write `a is_a_max_of A`, which is closer to a sentence.
 -/
-infix ` is_a_max_of `:55 := is_max
+infix ` is_a_max_of `:55 := is_maximum
 
 /-
 Let's prove something now! A set of real numbers has at most one maximum. Here
