@@ -1,4 +1,4 @@
-import analysis.specific_limits
+import analysis.specific_limits.basic
 import data.int.parity
 import topology.sequences
 
