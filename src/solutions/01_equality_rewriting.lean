@@ -23,6 +23,9 @@ Of course we don't want to constantly invoke those lemmas, and we will eventuall
 more powerful solutions.
 -/
 
+-- Uncomment the following line if you want to see parentheses around subexpressions.
+-- set_option pp.parens true
+
 example (a b c : ℝ) : (a * b) * c = b * (a * c) :=
 begin
   rw mul_comm a b,
