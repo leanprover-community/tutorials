@@ -257,7 +257,7 @@ end
 Now we are ready for some analysis. Let's set up notation for absolute value
 -/
 
-local notation `|`x`|` := abs x
+local notation (name := myabs) `|`x`|` := abs x
 
 /-
 And let's define convergence of sequences of real numbers (of course there is
