@@ -254,14 +254,8 @@ begin
 end
 
 /-
-Now we are ready for some analysis. Let's set up notation for absolute value
--/
-
-local notation `|`x`|` := abs x
-
-/-
-And let's define convergence of sequences of real numbers (of course there is
-a much more general definition in mathlib).
+Now we are ready for some analysis. Let's define convergence of sequences of real numbers 
+(of course there is a much more general definition in mathlib).
 -/
 
 /-- The sequence `u` tends to `l` -/
