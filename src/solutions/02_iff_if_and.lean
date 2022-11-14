@@ -232,6 +232,9 @@ Let's now practice all three styles using:
   mul_nonneg_of_nonpos_of_nonpos {a b : α} (ha : a ≤ 0) (hb : b ≤ 0) : 0 ≤ a * b
 
   sub_nonpos {a b : α} : a - b ≤ 0 ↔ a ≤ b
+
+It is acceptable as long as the proof utilizes the two theorems, and other theorems
+such as `sub_nonneg` and tactics like `ring` are also allowed to be used.
 -/
 
 /- First using mostly backward reasoning -/
