@@ -71,6 +71,10 @@ and their easy consequences:
 
   limit_const_sub_inv_succ (x : ℝ) : seq_limit (λ n, x - 1/(n+1)) x
 
+as well as:
+
+  lim_le (hu : seq_limit u x) (ineg : ∀ n, u n ≤ y) : x ≤ y
+
 The structure of the proof is offered. It features a new tactic: 
 `choose` which invokes the axiom of choice (observing the tactic state before and
 after using it should be enough to understand everything). 
