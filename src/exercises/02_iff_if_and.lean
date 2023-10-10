@@ -340,8 +340,9 @@ end
 /-
 Of course using `split` only to be able to use `exact` twice in a row feels silly. One can
 also use the anonymous constructor syntax: ⟨ ⟩ 
-Beware those are not parentheses but angle brackets. This is a generic way of providing 
-compound objects to Lean when Lean already has a very clear idea of what it is waiting for.
+Beware those are not parentheses but angle brackets. You can type them as \< and \> in VS
+Code. They are a generic way of providing compound objects to Lean when Lean already has a
+very clear idea of what it is waiting for.
 
 So we could have replaced the last three lines by: 
   exact ⟨hQ, hP⟩
